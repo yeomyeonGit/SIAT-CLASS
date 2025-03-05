@@ -1,0 +1,194 @@
+git: 시간과 공간을 자유롭게 넘나들 수 있는 것
+- 시간: 버전, 특정 내역을 취소
+- 공간: 모드전환(branch)
+- http://git-scom.com 설치
+
+1. git 최초 설정
+git config --global user.name "cmion"
+git config --global user.email "yeomyeongforbuisness@gmail.com"
+
+2. 확인
+git config --user.name
+
+3. 브랜치명 변경(master -> main)
+git config --global init.defaultBranch main
+
+4. 사용할 프로젝트를 git 관리로 요청
+git init
+
+5. 파일 작성 및 저장
+
+6. 캡슐에 담자
+git status
+
+파일 하나 담기
+git add siat.yaml 각각 담기
+
+모든 파일 담기
+git add .
+
+7. 캡슐을 묻자
+git commit
+vi 편집기 빠져나오는 명령어
+esc :q
+
+git commit -m "메시지 명"
+
+캡슐이 묻혔는지 확인
+git log: 커밋한 명령어들을 모두 확인할 수 있음. 특정 커밋을 불러올 때 여기에 뜨는 hash 코드값이 중요함
+
+8. add와 commit 한꺼번에
+git commit -am "커밋 메시지" : add할 필요 없이 한꺼번에 커밋이 된다. 하지만 add와 commit 따로 해야하는 경우가 있지 때문에 권장 x.
+주의 ) 새로 추가된 파일이 없을 때 한정적으로 사용. 즉, 기존 코드를 수정했을 때 사용가능.
+
+9. 과거로 돌아가는 방법
+- reset: 원하는 시점으로 돌아간 뒤 이후 내역들을 지웁니다.
+- revert: 되돌리기 원하는 시점의 커밋을 거꾸로 실행
+- git log에서 해시코드를 확인하거나 소스트리에서 확인
+
+git reset --hard 2c6c8397e6f00dcc623bfdc9d2a90cdf0b088565
+
+git revert 2c6c8397e6f00dcc623bfdc9d2a90cdf0b088565
+
+--revert된 상태에서 revert 전으로 돌아가고 싶다면?
+
+
+
+---공간 여행(차원 넘나 드는 것)
+branch (다른 차원)
+: 프로젝트를 하나 이상의 모습으로 관리
+: 여러 작업들이 각각 독립되어 진행
+
+현재 브랜치명 확인
+git branch
+
+브랜치에 대한 생성/이동/삭제
+git branch branch_name
+
+브랜치로 이동해서 코드 작성
+git switch branch_name
+
+브랜치 생성과 동시에 이동
+version 2.23 under version: git checkout -b 브랜치명
+version 2.23 이상 버전: git switch 브랜치명
+git switch -c 브랜치명
+
+삭제
+git branch -d 삭제할 브랜치명
+
+
+[실습 1]
+1. team-coach 브랜치를 생성
+2. team-coach 브랜치로 이동
+3. team-coach 삭제
+
+[실습 2]
+1. main branch
+siat.yaml에 멤버를 추가하고 커밋메시지를 커밋
+: 기존 파일의 코드를 수정하는 거니까 -am 쓰기
+
+2. main branch
+tigers.taml에 멤버를 추가하고 커밋(메시지는 알아서)
+: 기존 파일의 코드를 수정하는 거니까 -am 쓰기
+
+3. team-coach 브랜치를 생성하고 이동
+siat.yaml에 코치를 추가하고 커밋(메시지는 알아서)
+tigers.yaml에 코치를 추가하고 커밋(메시지는 알아서)
+lions.yaml에 코치를 추가하고 커밋(메시지는 알아서)
+
+[실습3]
+새로운 팀을 만들어야 한다. (new-team)
+
+-- branch 합치는 방법
+: merge - 두 브랜치를 한 커밋에 이어 붙이는 작업 (히스토리 내역이 남음)
+team-coach 브랜치를 main 브랜치로 merge한다면?
+main에서 git merge team-coach, main이 주체
+: rebase - 브랜치를 다른 브랜치에 이어 붙이는 작업 (히스토리 내역이 남지 않음)
+branch가 주체가 된다
+rebase는 fast-forward가 필요하다.
+
+
+-- 브랜치 간의 충돌 밀 충돌 해결
+[실습] 새로운 두 개의 브랜치를 생성
+tiger-branch, lions-branch
+
+main
+- tigers.yaml에서 매니저의 이름을 변경
+- lions.yaml에서 코치의 이름을 변경
+- Eagles.yaml에서 매니저의 이름을 변경
+
+=> commit "Update file tigers lions eagles"
+
+tiger-branch
+- tigers.yaml에서 매니저의 이름을 변경
+
+=> commit "Update file tigers"
+
+lions-branch
+- lions.yaml에서 매니저의 이름을 변경
+- Eagles.yaml에서 매니저의 이름을 변경
+
+=> commit "Update file lions eagles"
+
+
+-- 충돌 발생시키기 위해서 main 이동
+-- 1차적으로 tiger-branch와 병합
+git merge tiger-branch (merge를 취소)
+충돌해결이 된 경우
+- git add .
+- git commit -m "메시지"
+
+rebase로 병합할 때 충돌 (rebase를 하려면 브랜치로 이동해야 함)
+- git switch lions-branch
+수정 완료 후
+git add .
+git rebase --continue
+
+최종적으로 main 브랜치의 시간 지점을 맞추기
+- git switch main
+- git merge lions-branch
+
+두 브랜치를 삭제함
+-git branch -d tiger-branch
+-git branch -d lions-branch
+
+
+
+-------------------------
+fork: 다른 사람의 레포를 그대로 복사해 내 레포로(클라우드) 가져오는 것
+clone: 클라우드 상에 내 원격 레포에 있는 코드와 히스토리 내역 등을 로컬저장소로 가져 오는 기능
+$ git clone [로컬 저장소 주소] [생성 폴더명]
+$ git clone [로컬 저장소 주소] [생성 폴더명]
+$ git clone [로컬 저장소 주소] teacherPJT
+
+3. 원본저장소 등록
+$ git remote -v (원격저장소 확인)
+origin (로컬) https://github.com/yeomyeonGit/teacherPJT.git (fetch)
+origin (로컬) https://github.com/yeomyeonGit/teacherPJT.git (push) 
+
+git remod add upstream [원격저장소 주소]
+$ git remote -v (원격저장소 확인)
+
+로컬저장소와 연결돼 있는 원격저장소 확인 가능
+
+4. commit & push
+로컬 저장소에서 수정한 내용을 fork한 원격저장소에 commit & push
+
+5. fetch
+이때 원본 저장소에 수정내역을 업데이트하기 전에 다른 사람들이 먼저 수정한 내역이 있는지 확인
+git fetch upstream
+git pull upstream main
+
+6. 만약 충돌이 발생시 해결하고 다시 commit & push (commit & sync)
+
+7. pull request
+push 완료 후 포크된 페이지에 접속해서
+pull request탭에 들어가 new pull request 버튼 클릭
+원본 저장소의 어떤 브랜치로 머지할지 선택하면 pull request 완료
+
+8. 마지막 동기화 작업
+업데이트된 원본저장소의 내용을 가져오는 것
+$git fetch upstream
+
+로컬에서 merge
+내 로컬의 저장소에 merge한 내용을 반영
