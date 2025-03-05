@@ -1,0 +1,194 @@
+----- git & git hub
+git 시간과 공간을 자유롭게 넘나들 수 있는 것 
+- 시간 : 버전, 특정내역을 취소 
+- 공간 : 모드전환(branch) 
+
+http://git-scm.com 
+http://www.sourcetreeapp.com 
+
+> git --version 
+
+1. git 최초 설정 
+git config --global user.name "jslim" 
+git config --global user.email "jslim9413@naver.com"
+
+2. 확인
+git config --global user.name
+git config --global user.email
+
+3. 브랜치명 변경(master -> main)
+git config --global init.defaultBranch main 
+
+
+4. 사용할 프로젝트를 git 관리로 요청 
+git init 
+
+5. 파일작성 및 저장 
+
+6. 캡슐에 담자 
+git status 
+
+파일 하나 담기 
+git add siat.yaml 
+
+모든 파일 
+git add . 
+
+
+7. 캡슐을 묻자 
+git commit -m "first commit"
+vi 편집기 빠져나오는 명령어 - :q
+
+확인 
+git log
+
+8. add 와 commit 한꺼번에 
+git commit -am "커밋메시지" 
+주) 새로 추가된 파일이 없을 때 한정적으로 사용 
+
+9. 과거로 돌아가는 방법
+- reset : 원하는 시점으로 돌아간뒤 이후 내역들을 지웁니다.
+- revert : 되돌리기 원하는 시점의 커밋을 거꾸로 실행 
+
+git reset --hard 커밋해시 
+
+git reset --hard 207293a0153e482026b3f712c3f8714a6a896ad5
+
+-- revert
+git revert 207293a0153e482026b3f712c3f8714a6a896ad5
+
+
+-- revert된 상태에서 revert전으로 돌아가고 싶다면?
+git revert 207293a0153e482026b3f712c3f8714a6a896ad5
+git reset  --hard
+
+-- 공간여행(차원 넘나드는것)
+branch (다른 차원) 
+: 프로젝트를 하나 이상의 모습으로 관리
+: 여러 작업들이 각각 독립되어 진행
+
+브랜치에 대한 생성/이동/삭제 
+git branch
+git branch branch_name 
+git switch  branch_name 
+
+version 2.23 under version  : git checkout -b 브랜치명
+version 2.23 over   version  : git switch -c     브랜치명
+
+브랜치 생성과 동시에 이동
+git switch -c     브랜치명
+
+삭제
+git branch -d 삭제할 브랜치명
+
+[실습1] 
+1. team-coach 브랜치를 생성
+2. team-coach 브랜치로 이동 
+3. team-coach 삭제 
+
+[실습2] 
+1. main branch 
+siat.yaml 에 멤버를 추가하고 커밋(메시지는 알아서) 
+
+2. main branch 
+tigers.yaml 에 멤버를 추가하고 커밋(메시지는 알아서) 
+
+3. team-coach 브랜치를 생성하고 이동 
+siat.yaml 에 코치를 추가하고 커밋(메시지는 알아서) 
+tigers.yaml 에 코치를 추가하고 커밋(메시지는 알아서) 
+lions.yaml 에 코치를 추가하고 커밋(메시지는 알아서) 
+
+[실습3] 
+새로운팀을 만들어야한다.(new-team)
+새로운팀 브랜칭에 eagle.yaml 파일 생성하고 데이터 넣고 커밋 
+ 
+-- branch 합치는 방법
+: merge - 두 브랜치를 한 커밋에 이어붙이는 작업 
+team-coach 브랜치를 main 브랜치로 merge 한다면?
+git merge team-coach 
+
+: rebase - 브랜치를 다른 브랜치에 이어붙이는 작업 
+브랜치의 주체는 main 이 아니다.
+git rebase main
+
+-- 브랜치간의 충돌 및 충돌해결 
+[실습] 새로운 두개의 브랜치를 생성 
+tiger-branch , lions-branch 
+
+main
+- tigers.yaml 에서 매니저의 이름을 변경 
+- lions.yaml  에서 코치의 이름을 변경 
+- eagles.yaml 에서 매니저의 이름을 변경 
+git commit -am "Update file tigers lions eagles"
+
+tiger-branch 
+- tigers.yaml 에서 매니저의 이름을 변경 
+git switch tiger-branch 
+git commit -am "Update file tigers"
+
+lions-branch 
+- lions.yaml  에서 코치의 이름을 변경 
+- eagles.yaml 에서 매니저의 이름을 변경 
+git switch lions-branch
+git commit -am  "Update file lions eagles"
+
+-- 충동발생시키기위해서 main 이동 
+git switch main
+-- 1차적으로 tiger-branch 병합 
+git merge tiger-branch 
+
+당장 충돌해결이 어려울경우  중단
+- git merge --abort 
+충돌해결이된 경우 
+- git add . 
+- git commit -m "메시지" 
+
+rebase 로 병합할 때 충돌
+- git switch lions-branch 
+- git rebase main 
+- git rebase --abort 
+수정완료 후 
+- git add . 
+- git rebase --continue 
+최종적으로 
+main 브랜치의 시간 지점을 맞추고 
+- git switch main 
+- git merge lions-branch 
+두 브랜치를 삭제함
+- git branch -d tiger-branch 
+- git branch -d lions-branch 
+
+------------------------ 
+Fork   : 다른사람의 레포를 그대로 복사해 내 레포 가져오는 기능
+Clone : 내 원격레포에 있는 코드와 히스토리내역등을 로컬저장소로 가져요는 기능   
+$ git clone [원격저장소주소] [생성폴더명]
+$ git clone https://github.com/jslim9413/teacherPJT.git teacherPJT
+
+3. 원본저장소 등록 
+$ git remote -v (원격저장소 확인)
+$ git remote add upstream [원격저장소주소]
+$ git remote -v (원격저장소 확인)
+
+4. Commit & Push 
+로컬 저장소에서 수정한 내용을 fork한 원격저장소에 Commit & Push 
+
+5. fetch 
+이때 원본 저장소에 수정내역을 업데이트하기 전에
+다른 사람들이 먼저 수정한 내역이 있는지 확인 
+
+$ git fetch upstream 
+$ git pull upstream main 
+
+6. 만약 충돌이 발생시 해결하고 다시 Commit & Push 
+
+7. Pull Request 
+push 완료 후 포크된 페이지에 접속해서 
+pull request탭에 들어가 New Pull Request 버튼 클릭하면
+원본 저장소의 어떤 브랜치로 머지할지 선택하면 Pull Request 완료 
+
+마지막 동기화 작업 
+업데이트된 원본저장소의 내용을 가져오는 것 
+$ git fetch upstream 
+
+로컬에서 merge
+내 로컬의 저장소에 merge한 내용을 반영 
