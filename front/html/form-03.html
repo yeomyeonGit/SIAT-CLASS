@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action = "xxxx.html" method ="">
+        <select name = "subject" id = "subject" multiple>
+            <option value = "1">HTML</option> <!-- 옵션 이름과 다르게 value의 값을 할당할 수 있다-->
+            <option value = "3">CSS</option>
+            <option value = "3">Java Script</option>
+        </select>
+
+        
+        <hr/>
+        <lable>전공 분야를 선택하세요</lable>
+        <select name = "major">
+            <optgroup label = "computer">
+                <option>Software</option>
+                <option>Robot</option>
+                <option>System</option>
+            </optgroup>
+
+        </select>
+
+        <lable>전공 분야를 입력하세요</lable>
+            <input type = "text" list = "majorlist">
+            <datalist id = "majorlist">
+                <option>소프트웨어</option>
+                <option>로봇</option>
+                <option>회로</option>
+                <option>시스템</option>
+                <option>설계시스템</option>
+                <option>서비스</option>
+                <option>교육</option>
+            </datalist>
+        
+        <hr/>
+        <input type = "color"><br/>
+        나이를 입력하세요: <input type = "number"><br/> <!--업다운으로 숫자 입력 가능-->
+        홈페이지 주소를 입력하세요: <input type = "url"><br/> <!--형식에 맞게 유효성 검사-->
+        검색어를 입력하세요: <input type = "search"><br/>
+
+        <input type = "submit" value = "전송">
+        <input type = button value = "버튼" onclick="btnHandler('이벤트 발생')">
+        <!--button은 스크립트 함수와 연계해서 쓰이는 것-->
+        <!-- Event 사용자가 프로그램에 가하는 행위(onclick) -->
+        <!-- Event source 이벤트의 근원. type이라고 할 수 있음 -->
+        <!--Event handler 이벤트가 있을 때 이벤트 소스(button)에 실행되어 행위를 하도록 하는 호출. script function() 형식을 호출 -->
+    
+        
+
+    </form>
+
+    <script>
+        function btnHandler(msg) {
+            window.alert(msg) ;
+            console.log('>>>> debug message')
+            // document.getElementById('subject') ;
+            // console.log(subject.value)
+            // 문서에 접근하기 때문에 DOM이라고 한다
+            subjects = document.getElementsByName('subject')
+            console.log(subjects);
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./css/axios.css" rel="stylesheet">
+</head>
+<body>
+    <div id = "heading">
+        <h1>Hello ReqRes users!</h1>
+    </div>
+
+
+    <!-- <div>
+        <p id = "name">user first name</p>
+        <p id = "email">user email</p>
+        <img id = "avatar">
+    </div> -->
+
+    <div class = "lst">
+        <h1>User List</h1>
+        <div class = "flex"></div>
+
+    </div>
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        
+
+        // $(document).ready(function(){
+        //     // const axios = require('axios').default;  //const는 상수라는 의미
+        //     console.log("debug >>> axios", axios) ;
+        //     axios.get('https://reqres.in/api/users/2') ;
+        //         .then(function(response) {
+        //             console.log('response success >>>', response);
+        //             let obj = response.data.data;
+        //             console.log('response data >>>', obj);
+        //             let avatar = obj.avatar;
+        //             let name = obj.first_name ;
+        //             let email = obj.email ;
+        //             $("#name").text(name);
+        //             $("#email").text(email);
+        //             $("#avatar").attr("src", avatar);
+
+        //     })
+        //     .catch(function(error){
+
+        //         console.log('response fail');
+        //     })
+
+        // })
+
+        /////////////////////////// 싱글이 아닌 user list 정보를 가지고 와서 화면을 구성하시오.
+        // css 만들어서 화면 레이아웃까지 생각해 보세요.
+
+
+        $(document).ready(function() {
+            axios.get('https://reqres.in/api/users?page=2')
+            .then(function(response) {
+                console.log("response status", response) // response의 데이터를 가져윰
+                let ary = response.data.data
+                console.log(ary);
+
+                txt = '';
+
+                $.each(ary, function(idx, obj) {
+                    
+                    txt += '<div>';
+                    txt += `<p>${obj.first_name}</p>`;
+                    txt += `<p>${obj.email}</p>`;
+                    txt += `<img src = '${obj.avatar}'>`;
+                    txt += `</div>`;
+                    
+                })
+                $('.flex').append(txt);
+                
+
+            })
+
+            
+            
+
+            
+
+        })
+    </script>
+</body>
+</html>

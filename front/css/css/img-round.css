@@ -1,0 +1,16 @@
+#img-container {
+    margin: auto;
+    width: 187px;
+    height: 320px;
+
+    /* 블록을 이용해 중앙 정렬하는 법 */
+}
+
+img {
+
+    border: 1px solid cornflowerblue;
+    border-radius: 50%;
+    box-shadow: 10px 10px 10px ;
+
+}
+

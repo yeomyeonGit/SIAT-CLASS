@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2교시</title>
+    <style>
+        #loginImg {  
+            vertical-align: middle; /* 중간에 정렬한다는 뜻 */
+        }
+        /* css를 적용하기 위해 식별자로 인식하고 접근한다 */
+    </style>
+</head>
+<body>
+    <form action = "login.java" method = "get">
+        <fieldset>
+            <label>아이디: 
+                <input type = "text" name = "id" >
+            </label>
+            <label>패스워드: 
+                <input type = "password" name = "pwd" >
+            </label> 
+            <input id = "loginImg" type = "image" src = "./img/login.png" alt = "로그인">            
+            <!--이렇게 식별자가 있어서 이 이미지에 정렬 효과가 적용된다-->
+        </fieldset>
+    </form>
+    
+</body>
+</html>

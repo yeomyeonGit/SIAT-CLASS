@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>회원 가입을 환영합니다</h1>
+    <fieldset>
+        <legend>사용자 정보</legend>
+        <ul>
+            <li>
+                <lable for = "user-id">아이디</lable> <!--for = "user-id" 는 name 변수와 연결됨을 알려줌. 없어도 됨-->
+                <input type = "text" name = "user-id" id = "user-id">
+            </li>
+            <li>
+                <lable>이메일</lable>
+                <input type = "email" name = "user-email" id = "user-email">
+            </li>
+            <li>
+                <lable>비밀번호</lable>
+                <input type = "text" name = "user-pwd" id = "user-pwd">
+            </li>
+            <li>
+                <lable>비밀번호 확인</lable>
+                <input type = "text" name = "pwd-check" id = "pwd-check">
+            </li>
+        </ul>
+    </fieldset>
+
+    <fieldset>
+        <legend>이벤트와 새로운 소식</legend>
+            <input type = "radio" name ="evenNews" id = "evenNews" value = "yes">메일 수신
+            <input type = "radio" name ="evenNews" id = "evenNews" value = "no">메일 수신 안 함
+    </fieldset>
+    <input type = "submit" value = "가입하기"> <!-- 전송 -->
+    <input type = "reset" value = "취소"> <!-- 클리어 -->
+    
+</body>
+</html>

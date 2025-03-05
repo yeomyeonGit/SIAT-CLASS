@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>섭섭이는 정말 설명을 잘할까?</p>
+    <input type="text" name="user_id" id="user_id"><br/>
+    <button id = "showBtn">SHOW</button>
+    <button id = "hideBtn">HIDE</button>
+    <button id = "txtBtn">Get content</button>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        // $(selector선택자).action() 이 선택자에 대해 j쿼리의 특정 액션 함수를 하겠다. 액션 안에 익명의 함수를 넣어서 함수를 구현할 수도 있다 ;
+        $(document).ready(function() {
+            $("#showBtn").click(function(){
+                $("p").show();
+            })
+
+            $("#hideBtn").click(function(){
+                $("p").hide();
+            })
+
+            $('p').mouseover(function(){
+                window.alert('예끼 이놈');
+            })
+
+        
+            // Get: 값을 가져와서 이용한다
+
+            $('#txtBtn').click(function() {
+                let txt = $('p').text();
+                let id = $('#user_id').val();
+                window.alert(txt + " - " + id);
+                console.log(txt, id);
+            })
+
+            // Set: 형식을 적용시킨다
+
+            $('#user_id').val('띵가띵가~')
+            $('p').html('<h1>띵가띵</h1)')
+        });
+    </script>
+    
+</body>
+</html>

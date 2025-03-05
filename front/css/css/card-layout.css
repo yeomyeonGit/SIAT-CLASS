@@ -1,0 +1,66 @@
+.container {
+
+    border: 1px solid red;
+    width: 1200px;
+    margin: auto;
+
+}
+
+.card-title {
+
+    color: darkgrey;
+    text-align: center;
+    margin-bottom: 50px;
+    
+
+}
+
+.card-list {
+    
+    width: 1200px;
+    
+    
+
+}
+
+.card {
+    border-radius: 50px;
+    border: 1px solid gray;
+    width: 250px;
+    height: 340px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+    margin-right: 20px;
+    float: right;
+    padding: 12px;
+    
+
+       
+}
+
+img {
+    margin-top: 20px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 1px solid gray;
+    
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    
+    width: 200px;
+    height: 5ㅣ0px;
+    border-radius: 20px;
+
+}
+
+button:hover {
+    background-color: greenyellow;
+}

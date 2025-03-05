@@ -1,0 +1,78 @@
+.row {
+    display: flex;
+}
+
+#container {
+    flex-direction: row;
+}
+
+h1 {
+    font-size: 3em;
+    border: 1px solid red;
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+
+.column {
+    border: 1px solid blue;
+    width: 100%;
+    padding: 0.5em;
+
+}
+
+.column > .card {
+
+    border: 5px solid cadetblue;
+    border-radius: 0.5em;
+    cursor: pointer;
+    text-align: center;
+
+}
+
+
+.column > .card > .img-container {
+
+    
+    padding: 0.5em;
+    width: 8em;
+    height: 8em;
+    border-radius: 50%;
+    margin: auto;
+
+}
+
+.column > .card > .img-container img {
+    border-radius: 50%;
+
+    
+}
+
+.column > .card > h2 {
+    border: 1px solid blueviolet;
+    font-style: italic;
+    
+}
+
+.column > .card > p {
+    font-weight: bold;
+    text-transform: capitalize;
+    letter-spacing: 0.2em;
+}
+
+
+.card:hover {
+    color: white;
+    background-color: black;
+
+}
+
+.social {
+    margin-bottom: 0.5em;
+}
+
+
+a {
+    text-decoration: none;
+    margin: auto;
+    
+}

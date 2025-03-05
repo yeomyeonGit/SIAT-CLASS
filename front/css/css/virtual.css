@@ -1,0 +1,60 @@
+#container {
+    width: 960px;
+    margin: 0 auto;
+}
+
+#container > nav {
+    width: 900px;
+    height: 60px;
+    border: 1px solid salmon;
+    
+    
+}
+
+#container > nav > ul {
+    list-style: none;
+    
+}
+
+#container > nav > ul > li {
+   float: left;
+   width: 150px;
+   height: 1px solid blue;
+   padding: 10px;
+   border: 1px solid powderblue;
+   
+}
+
+#container > nav > ul > li > a {
+    text-decoration: none;
+    text-align: center;
+
+}
+
+#container a:active {
+    background-color: aquamarine;
+    color: cadetblue;
+
+}
+
+#container a:hover, a:focus {
+    background-color: blueviolet;
+    color: gainsboro;
+
+}
+
+#container a:link, a:visited {
+    background-color: darksalmon;
+    color: black;
+
+}
+
+.content h4:nth-child(2n+1) { 
+    background-color: chocolate;
+    
+}
+
+.content h4:nth-child(2n) { 
+    color: cornflowerblue;
+    
+}

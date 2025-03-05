@@ -1,0 +1,17 @@
+.big-line {
+
+    line-height: 50px;
+    width: 100px;
+    height: 50px;
+    background: black;
+    color: rgb(255, 255, 255);
+    text-align: center;
+
+}
+
+.product {
+    /* list-style-type: none ; */
+    /* list-style-type: upper-alpha; */
+    list-style-image: url('../img/dot.png') ;
+    list-style-position: inside;
+}

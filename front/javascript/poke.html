@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포켓몬 도감</title>
+    <style>
+        #pokemon-img {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .pokemon-container {
+            position: relative;
+            text-align: center;
+            cursor: pointer;
+        }
+        .pokemon-container img {
+            width: 100px;
+            height: 100px;
+        }
+        .ability-box, .move-box {
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            white-space: nowrap;
+            display: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>포켓몬 도감</h1>
+    <div id="pokemon-img"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            axios.get("https://pokeapi.co/api/v2/pokemon?limit=20") // 20마리 포켓몬 가져오기
+            .then(function(response) {
+                let pokemonList = response.data.results;
+
+                $.each(pokemonList, function(idx, obj) {
+                    axios.get(obj.url)
+                    .then(function(pokeResponse) {
+                        let pokeImg = pokeResponse.data.sprites.front_default;
+                        let pokeName = pokeResponse.data.name;
+                        let abilities = pokeResponse.data.abilities.map(ability => ability.ability.name).join(", ");
+                        let moves = pokeResponse.data.moves; // 포켓몬 기술 목록
+
+                        // 기술 정보가 있을 경우, 첫 번째 기술 가져오기
+                        let firstMove = moves.length > 0 ? moves[0].move.name : "없음";
+
+                        let pokemonHtml = `
+                            <div class="pokemon-container" data-move="${firstMove}">
+                                <img src="${pokeImg}" alt="${pokeName}">
+                                <p>${pokeName}</p>
+                                <div class="ability-box">${abilities}</div>
+                                <div class="move-box">기술: ${firstMove} (클릭하면 효과 확인!)</div>
+                            </div>
+                        `;
+
+                        $("#pokemon-img").append(pokemonHtml);
+                    });
+                });
+
+                // 마우스 오버 시 능력 표시
+                $(document).on("mouseenter", ".pokemon-container img", function () {
+                    $(this).siblings(".ability-box").fadeIn(200);
+                });
+
+                $(document).on("mouseleave", ".pokemon-container img", function () {
+                    $(this).siblings(".ability-box").fadeOut(200);
+                });
+
+                // 포켓몬 클릭 시 기술 효과 가져오기
+                $(document).on("click", ".pokemon-container", function () {
+                    let moveName = $(this).attr("data-move");
+                    let moveBox = $(this).find(".move-box");
+
+                    if (moveName === "없음") {
+                        moveBox.text("이 포켓몬은 기술이 없습니다.").fadeIn(200);
+                        return;
+                    }
+
+                    // 기술 상세 정보 API 호출
+                    axios.get(`https://pokeapi.co/api/v2/move/${moveName}`)
+                    .then(function(moveResponse) {
+                        let effectEntries = moveResponse.data.effect_entries;
+                        let effect = "효과 정보 없음";
+
+                        // 영어 설명 찾기 (한국어 데이터가 없기 때문)
+                        let englishEffect = effectEntries.find(entry => entry.language.name === "en");
+                        if (englishEffect) {
+                            effect = englishEffect.effect;
+                        }
+
+                        moveBox.html(`<strong>${moveName}</strong>: ${effect}`).fadeIn(200);
+                    })
+                    .catch(function(error) {
+                        console.error("기술 정보를 불러오지 못했습니다:", error);
+                        moveBox.text("기술 효과를 가져올 수 없습니다.").fadeIn(200);
+                    });
+
+                    // 일정 시간 후 효과창 닫기
+                    setTimeout(() => moveBox.fadeOut(200), 5000);
+                });
+            })
+            .catch(function(error) {
+                console.error("API 호출 오류:", error);
+            });
+        });
+    </script>
+</body>
+</html>

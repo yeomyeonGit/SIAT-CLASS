@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <label>제조사</label>
+        <select id = "maker">
+            <option>선택하세요</option>
+            <option>BMW</option>
+            <option>AUDI</option>
+            <option>MERCEDES</option>
+        </select>
+
+        <label>모델명</label>
+        <select id = "model">
+            <option>선택하세요</option>
+        </select>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#maker").change(function() {
+                maker = $(this).val() ;
+                console.log("debug >>> model = ", maker)
+                $.get("./data/model.json", function(data, status){   // 해당 url로부터 data를 내려 받는다
+                    console.log("debug ajax request status, ", status) ; 
+                    console.log("debug ajax request data, ", data) ;
+                    
+                    $.each(data, function(idx, obj){  // data 안의 obj{}에 접근함
+
+                        if (obj[maker]) {   // 객체 하나하나에 접근함
+                            models = obj[maker]; 
+                            txt = '<option>선택하세요</option>'
+                            $("#model").empty();
+                            $.each(models, function(idx, model) {
+                                txt += `<option>${model}</option>`
+
+                            })
+                            $('#model').append(txt);
+                        }
+
+                    })
+                })
+            })
+        })
+
+
+
+
+                    
+                    
+                
+                
+                
+                
+    
+    
+
+    </script>
+</body>
+</html>

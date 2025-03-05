@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id = "btn">추가</button>
+    <div id = "add">
+        <input type = "text"><br/>
+    </div>
+    
+    <script>
+        bttn = document.querySelector("#btn");
+        bttn.onclick = function() {
+            window.alert('btn click');
+            divTag = document.querySelector('#add');
+
+            inputTag = document.createElement('input');
+            inputTag.setAttribute("type", "password");
+
+            brTag = document.createElement('br');
+
+            divTag.appendChild(inputTag);
+            divTag.appendChild(brTag);
+            
+        }
+
+    </script>
+</body>
+</html>

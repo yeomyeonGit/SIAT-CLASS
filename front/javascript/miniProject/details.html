@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포켓몬 상세 정보</title>
+    <style>
+        /* 여기에 스타일을 추가하세요 */
+    </style>
+</head>
+<body>
+    
+
+    <div class="pokemonDetails">
+        <h2>포켓몬 상세 정보</h2>
+        <div class="img-container">
+            <img id="pokeImg" src="" alt="포켓몬 이미지">
+        </div>
+        <h3 id="pokeName"></h3>
+        <p id="pokeId"></p>
+        <div class="types" id="pokeTypes"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const pokeId = urlParams.get('id');
+
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeId}`)
+        .then(function(response) {
+            const pokeInfo = response.data;
+            document.getElementById('pokeImg').src = pokeInfo.sprites.front_default;
+            document.getElementById('pokeName').textContent = pokeInfo.name;
+            document.getElementById('pokeId').textContent = `ID: ${pokeInfo.id}`;
+            
+            const pokeTypes = pokeInfo.types.map(type => `<button>${type.type.name}</button>`).join(' ');
+            document.getElementById('pokeTypes').innerHTML = pokeTypes;
+        })
+        .catch(function(error) {
+            console.error("상세 정보를 불러오는 중 오류 발생: ", error);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>작업중</title>
+    <style>
+        
+        body {
+            background-image: url('./img/패턴3.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap; 
+            justify-content: space-between; 
+            /* border: 1px solid red; */
+            width: 1300px;
+            margin: 0 auto;
+        }
+
+        .card {   /* 마우스오버하면 정보가 표시될 곳 */
+            width: 250px;
+            height: 300px; 
+            margin-bottom: 50px;
+            /* border: 1px solid green; */
+            border-top-left-radius: 50px;
+            /* border-radius: 60px; */
+            text-align: center;
+            background-color: rgb(226, 226, 147);
+            border: 3px dotted dodgerblue;
+            
+        }
+
+        .name {
+            margin-top: -3px;
+        }
+
+        .card img {
+            position: relative;
+            width: 70%;
+            height: auto;
+            margin-top: 30px;
+            /* border: 1px solid blue; */
+            border-radius: 30px;
+            background-color: white;
+            /* border-top-left-radius: 20px;
+            border-top-right-radius: 20px; */
+            
+            
+        }
+
+        .type {
+            /* border: 1px solid yellow; */
+            width: 100px;
+            margin: auto;
+            padding: 5px;
+            border-radius: 20px;
+            color: rgb(101, 212, 138);
+            font-weight: 500;
+            background-color: rgb(161, 27, 27);
+        }
+
+        .id {
+            position: absolute;
+            padding-left: 20px;
+            font-size: 20px;
+            font-weight: 700;
+            color: rgb(133, 35, 128);
+        }
+
+        #top {
+            display: block;
+            margin: 0 auto;
+            mix-blend-mode: darken;
+        }
+
+
+        /*페이지네이션 - GPT 제작*/
+        .pagination {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .pagination button {
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <img id="top" src="./img/pokemon 3.jpg">
+    </header>
+
+
+    <div class="container">
+        <!-- <div class="card">
+          <img src="">
+          <h3 class="name">Card 1</h3>
+          <p class="id">001</p>
+          <p class="type">타입</p>
+        </div> -->
+    </div>
+    <div class="pagination">
+        <button id="firstPage">⏮ 처음</button>
+        <button id="prevPage">◀ 이전</button>
+        <span id="pageInfo"></span>
+        <button id="nextPage">다음 ▶</button>
+        <button id="lastPage">⏭ 마지막</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+
+    
+        let limit = 20;  // 한 번에 보여줄 포켓몬 수
+        let offset = 0;   // 시작 위치
+        let totalPokemon = 1304;  // 전체 포켓몬 수
+        let totalPages = Math.ceil(totalPokemon / limit); // 전체 페이지 수
+
+        function loadPokemon() {
+
+        //     const typeTranslations = {   // const가 있어야 하는 이유?
+        //     normal: "노말",
+        //     fire: "불꽃",
+        //     water: "물",
+        //     electric: "전기",
+        //     grass: "풀",
+        //     ice: "얼음",
+        //     fighting: "격투",
+        //     poison: "독",
+        //     ground: "땅",
+        //     flying: "비행",
+        //     psychic: "에스퍼",
+        //     bug: "벌레",
+        //     rock: "바위",
+        //     ghost: "고스트",
+        //     dragon: "드래곤",
+        //     dark: "악",
+        //     steel: "강철",
+        //     fairy: "페어리"
+        // };
+
+        const typeTranslations = {   // const가 있어야 하는 이유?
+                            "normal": "노말",
+                            "fire": "불꽃",
+                            "water": "물",
+                            "electric": "전기",
+                            "grass": "풀",
+                            "ice": "얼음",
+                            "fighting": "격투",
+                            "poison": "독",
+                            "ground": "땅",
+                            "flying": "비행",
+                            "psychic": "에스퍼",
+                            "bug": "벌레",
+                            "rock": "바위",
+                            "ghost": "고스트",
+                            "dragon": "드래곤",
+                            "dark": "악",
+                            "steel": "강철",
+                            "fairy": "페어리"
+                        };
+
+        
+
+            $(".container").empty();  // 기존 포켓몬 목록 초기화
+            let currentPage = offset / limit + 1;
+            $("#pageInfo").text(`페이지: ${currentPage} / ${totalPages}`);
+
+            axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`)
+            .then(function(response) {
+                let eachPoke = response.data.results;  // 포켓몬 목록 배열
+
+                $.each(eachPoke, function(idx, obj) {
+                    axios.get(obj.url)   // 개별 포켓몬 정보 요청
+                    .then(function(singlePokeResponse) {
+                        let pokeInfo = singlePokeResponse.data;
+
+                        let pokeId = pokeInfo.id;
+                        let pokeImg = pokeInfo.sprites.front_default;
+
+                        
+                        
+                        
+                        let pokeTypes = "" // 타입을 문자열로 변환
+
+
+                        $.each(pokeInfo.types, function(idx, singlePokeType){
+
+     
+                            let pokeEngType = pokeInfo.types[idx].type.name
+                            
+                           
+                            pokeTypes += `<button style="width: 50px; height: 30px;>${typeTranslations[pokeEngType]}</button>`
+                            
+
+                        })
+
+                        
+
+                        axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokeId}/`)
+                        .then(function(desResponse){
+                            pokeNames = desResponse.data.names
+
+                            let pokeName = '';
+
+                            $.each(pokeNames, function(idx, singlePokeName){
+
+                                if (pokeNames[idx].language.name == "ko"){
+
+                                    pokeName = pokeNames[idx].name
+
+
+                                }
+
+
+                            })
+
+
+                            pokeDes = desResponse.data.flavor_text_entries
+                            // console.log(pokeDes)
+                            
+                            let pokeDesTotal = ''
+                            
+
+                            $.each(pokeDes, function(idx, singlePokeDes){
+                                // console.log(pokeDes[idx])
+
+                                if (pokeDes[idx].language.name == "ko"){
+                                    pokeDesTotal += pokeDes[idx].flavor_text
+                                    
+
+                                    // console.log(idx, pokeDesTotal)
+                                    
+                                    // pokeDesTotal = 
+                                }
+                                
+
+                            })
+
+                            let content =
+                            `<div class="card" onclick="location.href='detail.html?id=${pokeId}'">
+                                <p class='id'>${pokeId}</p>
+                                <img src="${pokeImg}">
+                                <h3 class="name">${pokeName}</h3>
+                                ${pokeTypes}
+                            </div>`
+                        $(".container").append(content);
+                   
+                            
+                        })
+
+                        
+
+                        
+                    });
+                });
+            })
+            .catch(function(error) {
+                console.error("포켓몬 데이터를 불러오는 중 오류 발생: ", error);
+            });
+        }
+
+
+        
+
+        // 처음 페이지 버튼
+        $("#firstPage").click(function() {
+            offset = 0;
+            loadPokemon();
+        });
+
+        // 이전 페이지 버튼
+        $("#prevPage").click(function() {
+            if (offset > 0) {
+                offset -= limit;
+                loadPokemon();
+            }
+        });
+
+        // 다음 페이지 버튼
+        $("#nextPage").click(function() {
+            if (offset + limit < totalPokemon) {
+                offset += limit;
+                loadPokemon();
+            }
+        });
+
+        // 마지막 페이지 버튼
+        $("#lastPage").click(function() {
+            offset = (totalPages - 1) * limit; // 마지막 페이지의 offset 설정
+            loadPokemon();
+        });
+
+
+        // 최초 로딩
+        $(document).ready(function() {
+            loadPokemon();
+        });
+
+
+
+        
+
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,31 @@
+h1 {
+
+    padding: 10px;
+        }
+
+
+#container {
+    width: 500px;
+    border: 1px solid #a386bb;
+    margin: 30px;
+    padding: 10px;
+}
+
+
+.accent {
+
+    border : 5px solid cadetblue;
+    padding: 5px;
+
+}
+
+.bg {
+
+    background-color: aliceblue;
+
+}
+
+p {
+    font-style: italic;
+    font-size: 30px;
+}

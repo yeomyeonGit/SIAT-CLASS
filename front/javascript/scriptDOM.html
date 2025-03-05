@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    현재 시간: <span id = "time"></span>
+    <hr/>
+    <a href="http://www.google.com">Google</a>
+    <a href="http://www.naver.com">Naver</a>
+    <a href="http://www.siat.com">SIAT</a>
+
+    <hr/>
+    <p class = "result">섭섭해</p>
+
+    <script> //스크립트가 내장한 객체 가져오기
+        current = new Date() ; /*변수형을 지정하지 않아도 되는 인터프리트 방식의 언어*/
+        spanTag = document.getElementById("time") ; // 식별자로 텍스트에 접근
+        console.log(">>>>>", spanTag ) // 스크립트를 출력하는 용도. 디버그에 쓰임
+        spanTag.textContent = current.toLocaleString(); //원하는 내용 삽입
+
+        // 식별값이 없을 때 태그명으로 접근. 태그명으로 접근할 때는 중복이 가능해서 s로 써야 한다.
+        lst = document.getElementsByTagName('a') ;
+        console.log("debug >>>>", lst) ;
+
+        for (idx = 0; idx < lst.length; idx++) {
+            console.log(lst[idx])
+            console.log(lst[idx].text) // 태그가 포함하고 있는 자식 노드의 텍스트를 가져옴
+            console.log(lst[idx].href)
+        }
+
+        // 클래스이름으로 태그에 접근
+        pTag = document.getElementsByClassName('result'); // 배열로 반환
+        pTag[0].textContent = '섭섭해';
+
+        // 선택자로 접근
+        /*
+        document.querySelector('#time');
+        document.querySelector('.result');
+        document.querySelector('body > a');
+        
+        */
+
+    </script>
+</body>
+</html>

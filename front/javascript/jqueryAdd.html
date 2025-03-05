@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        .color {
+            background-color: darkseagreen;
+        }
+
+        .highlight {
+            font-size: large;
+            font-weight: bold;
+        }
+
+        .line {
+            border: 5px solid;
+            border-color: darkgreen;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+    <p>This is a paragraph.</p>
+    <p>This is another paragraph.</p>
+    
+    <ol>
+      <li>List item 1</li>
+      <li>List item 2</li>
+      <li>List item 3</li>
+    </ol>
+    
+    <button id="btn1">Append text</button>
+    <button id="btn2">Append list items</button>
+
+    <hr/>
+    <table>
+        <tbody id = "tbody">
+            <tr>
+                <td>JSLIM</td><td>섭섭해</td><td>SEOUL</td>
+            </tr>
+        </tbody>
+    </table>
+        <tfoot>
+            <tr>
+                <td colspan = "3">
+                    <button id = "tableBtn">데이터 수정</button>
+                </td>
+            </tr>
+        </tfoot>
+    
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+        $("#btn1").click(function(){
+            $("p").html(" <b>Appended text</b>.");
+        });
+
+        $("#btn2").click(function(){
+            $("ol").append("<li>before item</li>");
+        });
+
+        let mama = '<td>졸려</td><td>속쓰려</td><td>크어어뻑예</td>'
+
+        // <empty와 remove 차이>
+        // $('#tableBtn').click(function() {
+        //     $('#tbody').empty();
+        //     $('tbody').append(mama);
+        // })
+
+        // <jquery loop>
+        $('#tableBtn').click(function() {
+            let ary = [
+                {name : '국밥', nickname: '크어어', location: '부산'},
+                {name : '국밥', nickname: '크어어', location: '부산'},
+                {name : '국밥', nickname: '크어어', location: '부산'}
+            ];
+
+            $('#tbody').empty();
+            let txt = '';
+
+            $.each(ary, function(idx, data) {
+                txt += '<tr>';
+                txt += `<td>${data.name}</td>`;
+                txt += `<td>${data.nickname}</td>`;
+                txt += `<td>${data.location}</td>`;
+                txt += '</tr>';
+            })
+            $('#tbody').append(txt);
+
+            $('table tr td').addClass("color highlight line")
+
+        })
+
+        });
+    </script>
+</body>
+</html>

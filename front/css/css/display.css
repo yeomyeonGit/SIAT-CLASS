@@ -1,0 +1,37 @@
+div {
+    border: 1px solid red;
+
+}
+
+div > ul {
+    list-style: none;
+}
+
+div > ul > li > a {
+    text-decoration: none;
+}
+
+div > ul > li {
+    display: inline-block;
+    border: 1px solid blue;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    margin: 10px 5px 10px;
+}
+
+hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+img {
+    float: left;
+    margin-right: 50px;
+}
+
+p {
+    
+    text-align: left;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2, 3교시 - 실습</title>
+</head>
+<body>
+    <fieldset>
+        <form action = "order.jsp" method = "get">
+        <legend>상품 선택</legend>
+        <p><b>주문할 상품을 선택해 주세요.</b></p>
+            <ul>
+                <li>
+                    <label><input type = "checkbox" name = "prod" value = "s_3">선물용 3kg</label>
+                    <!-- 중복값이므로 배열에 담겨서 넘어가는 구조. name이 동일하지 않으면 그룹이 되지 않는다 -->
+                    <!--여기서 그룹의 이름은 prod-->
+                </li>
+                <li>
+                    <label><input type = "checkbox" name = "prod" value = "s_5">선물용 5kg</label>
+                </li>
+                <li>
+                    <label><input type = "checkbox" name = "prod" value = "f_3">가정용 3kg</label>
+                </li>
+                <li>
+                    <label><input type = "checkbox" name = "prod" value = "f_5">가정용 5kg</label>
+                </li>
+            </ul>
+            <p><b>포장</b></p>
+            <ul>
+                <li>
+                    <input type = "radio" name ="gift" value = "yes">선물 포장
+                    <!--여기서도 gift라는 그룹의 단일값을 전달-->
+                </li>
+                <li>
+                    <input type = "radio" name ="gift" value = "no">선물 포장 안 함
+                </li>
+            </ul>
+
+            <input type = "submit" value = "order">
+        
+    </fieldset>
+    
+
+    <fieldset>
+        <legend>배송 정보</legend>
+        <ul>
+            <li> <!--식별자로 식별할 수 있게 lable 태그를 써라-->
+                <lable>이름</lable>
+                <input type = "text"
+                name = "user-name"
+                id = "user-name"
+                placeholder = "이름을 입력하세요"> <!--식별자는 name 변수와 동일하게 하는 게 현업 관행--->
+
+            </li>
+            <li> <!--식별자로 식별할 수 있게 lable 태그를 써라-->
+                <lable>배송 주소</lable>
+                <input type = "text" name = "user-addr" id = "user-addr"
+                placeholder = "배송지를 입력하세요"> <!--식별자는 name 변수와 동일하게 하는 게 현업 관행--->
+
+            </li>
+            <li> <!--식별자로 식별할 수 있게 lable 태그를 써라-->
+                <lable>메일 주소</lable>
+                <input type = "text" name = "user-email" id = "user-email"
+                placeholder = "이메일을 입력하세요"> <!--식별자는 name 변수와 동일하게 하는 게 현업 관행--->
+
+            </li>
+            <li> <!--식별자로 식별할 수 있게 lable 태그를 써라-->
+                <lable>핸드폰</lable>
+                <input type = "text" name = "user-phone" id = "user-phone"
+                placeholder = "전화번호를 입력하세요"> <!--식별자는 name 변수와 동일하게 하는 게 현업 관행--->
+
+            </li>
+            <li>
+                <lable>배송일 지정</lable>
+                <input type="date"><small>배송은 주문일로부터 3일 후 시작</small>
+            </li>
+            <li>
+                <lable>배송 메모</lable>
+                <textarea rows = "4" cols="40"></textarea>
+            </li>
+
+        </ul>
+    </fieldset>
+</form>
+    
+</body>
+</html>

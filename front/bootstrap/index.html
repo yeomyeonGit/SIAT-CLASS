@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous">
+  </head>
+
+  <body>
+
+
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary data-bs-theme=" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">SIAT</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">홈</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./login.html">로그인</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">회원가입</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./notice.html">공지사항</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./board.html">Board</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+      <div class = "container mt-3">
+
+        <div id="carouselExampleDark" class="carousel carousel-dark slide">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active" >
+              <img src="https://www.quillvalleyexotics.com/uploads/1/3/4/8/134836236/tenreconline6_orig.jpg" class="d-block w-100" alt="No image" style = "height: 500px; width: 800px;">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Tenrec</h5>
+                <p>Some representative placeholder content for the first slide.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="https://ynet-pic1.yit.co.il/picserver5/crop_images/2020/06/26/10059706/10059706_1_119_2048_1152_large.jpg" class="d-block w-100" alt="..."  style = "height: 500px; width: 800px;">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Jerboa</h5>
+                <p>Some representative placeholder content for the second slide.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="https://lh3.googleusercontent.com/proxy/6zdhmcoxgEJognDmjzeMHUGEh-Vggx4YWnt1my_vsXqfAAiM48q_OhtiAEH7JvHn82oRShNyfDlPc4LoMCdauOpqHLNEWiypSHWvQJfYNpiG5RO-mGbB" class="d-block w-100" alt="..."  style = "height: 500px; width: 800px;">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Lemming</h5>
+                <p>Some representative placeholder content for the third slide.</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+      </div>
+
+      
+<!-- tab-->
+    <ul class="nav nav-tabs mt-3 justify-content-center">
+      <li class="nav-item">
+        <a  class="nav-link active" data-bs-target="#userInfo"
+            id="user-tab">회원정보</a>
+      </li>
+      <li class="nav-item" data-bs-target="#review">
+        <a class="nav-link " id="review-tab">내 리뷰 목록</a>
+      </li>
+      <li class="nav-item" data-bs-target="#order">
+        <a class="nav-link" id="order-tab">주문 내역</a>
+      </li>
+      <li class="nav-item" data-bs-target="#wishlist">
+        <a class="nav-link" id="wishlist-tab">위시리스트</a>
+      </li>
+    </ul>  
+    <!-- tab panel -->
+    <div class="tab-content">
+      <div id="user-tab-content" class="tab-pane">
+        <h3>정보확인</h3>
+      </div>
+      <div id="review-tab-content" class="tab-pane">
+        <h3>리뷰</h3>
+      </div>
+      <div id="order-tab-content" class="tab-pane">
+        <h3>주문</h3>
+      </div>
+      <div id="wishlist-tab-content" class="tab-pane">
+        <h3>원하는 것</h3>
+      </div>
+    </div> 
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+            crossorigin="anonymous"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      // JQuery 
+      $(document).ready(function() {
+        $('#user-tab').click(function() {
+          // class - addClass() , removeClass()
+          $('#user-tab').addClass("active")
+          $('#user-tab-content').addClass("active") 
+          
+          $('#review-tab').removeClass("active") 
+          $('#review-tab-content').removeClass("active") 
+          $('#order-tab').removeClass("active") 
+          $('#order-tab-content').removeClass("active") 
+          $('#wishlist-tab').removeClass("active") 
+          $('#wishlist-tab-content').removeClass("active") 
+        }) 
+        $('#review-tab').click(function() {
+          // class - addClass() , removeClass()
+          $('#review-tab').addClass("active") 
+          $('#review-tab-content').addClass("active") 
+          
+          $('#user-tab').removeClass("active")
+          $('#user-tab-content').removeClass("active") 
+          $('#order-tab').removeClass("active") 
+          $('#order-tab-content').removeClass("active") 
+          $('#wishlist-tab').removeClass("active") 
+          $('#wishlist-tab-content').removeClass("active") 
+
+        }) 
+        $('#order-tab').click(function() {
+          // class - addClass() , removeClass()
+          $('#order-tab').addClass("active") 
+          $('#order-tab-content').addClass("active") 
+
+          $('#review-tab').removeClass("active") 
+          $('#review-tab-content').removeClass("active") 
+          $('#user-tab').removeClass("active")
+          $('#user-tab-content').removeClass("active") 
+          $('#wishlist-tab').removeClass("active") 
+          $('#wishlist-tab-content').removeClass("active") 
+
+        }) 
+        $('#wishlist-tab').click(function() {
+          // class - addClass() , removeClass()
+          $('#wishlist-tab').addClass("active") 
+          $('#wishlist-tab-content').addClass("active") 
+
+          $('#order-tab').removeClass("active") 
+          $('#order-tab-content').removeClass("active") 
+          $('#review-tab').removeClass("active") 
+          $('#review-tab-content').removeClass("active") 
+          $('#user-tab').removeClass("active")
+          $('#user-tab-content').removeClass("active") 
+        }) 
+
+      })
+    </script>
+</body>
+</html>

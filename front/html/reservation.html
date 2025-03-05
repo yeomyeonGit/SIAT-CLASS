@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+        ul {
+            list-style: none; /*리스트의 동그라미를 없애줌*/
+        }
+
+        li {
+            line-height: 30px;
+        }
+
+        lable {
+             /*정렬*/
+        }
+    </style>
+<body>
+    <form action = "thanks.html"> <!--method를 지정하지 않으면 방식은 기본적으로 get이다-->
+        <fieldset>
+            <legend>배송예약 정보 입력</legend>
+            <ul>
+                <li>
+                    <lable>주문 상품</lable>
+                    <input type = "text" name = "name" value = "상품용 3kg" readonly>
+                    <!-- 읽기 전용 -->
+                </li>
+                <li>
+                    <lable>상품명</lable>
+                    <input type = "text" name = "prod" placeholder = "주소 입력" autofocus required>
+                    <!-- 커서가 자동으로 깜빡깜빡 -->
+                </li>
+                <li>
+                    <lable>배송지</lable>
+                    <input type = "text" name = "addr" placeholder = "배송지 입력">
+                    
+                </li>
+                <li>
+                    <lable>연락처</lable>
+                    <input type = "tel" name = "phone" placeholder = "-을 빼고 입력">
+                    
+                </li>
+                <li>
+                    <lable>배송일 지정</lable>
+                    <input type = "date" name = "d-day" value = "예약하기">
+                </li>
+            </ul>
+            <div align = center>
+                <input type = "submit" value = "예약하기">
+                <input type = "reset" value = "주문취소">
+
+            </div>
+        </fieldset>
+    </form>
+    
+</body>
+</html>

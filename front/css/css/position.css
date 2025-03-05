@@ -1,0 +1,41 @@
+body {
+
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+.static-position01 {
+
+    position: relative;
+    background-color: aquamarine;
+    width: 400px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+
+    
+
+}
+
+.static-position02 {
+
+    position: fixed;
+    background-color: darkturquoise;
+    width: 700px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+
+}
+
+.static-position03 {
+
+    position: relative;
+    background-color: darkcyan;
+    width: 400px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+
+}

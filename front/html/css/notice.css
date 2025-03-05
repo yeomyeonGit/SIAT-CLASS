@@ -1,0 +1,17 @@
+body {
+    display: flex ;  /*브라우저 크기에 따라 유연하게 조정됨*/
+    justify-content: center; /*중앙정렬*/
+    align-items: center; 
+    /* 수평정렬 */
+
+}
+#container {
+    width : 250px ;
+    height : 375px ;
+    background: url('../img/notice.jpg') no-repeat; /*배경 이미지가 반복 안되게*/
+    border: 2px solid navy;
+    text-align: center; /*문자를 가운데 정렬*/
+
+}
+
+/* tag, id, class가 선택자로 쓰일 수 있다 */

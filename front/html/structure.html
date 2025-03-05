@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 외부 스타일 시트를 가져오기 위한 태그 -->
+    <link href="./css/structure.css" rel="stylesheet"> 
+    <!-- css를 적용하면 밑줄이 사라진다 -->
+    <!-- link 태그는 종료 태그가 없어도 된다. -->
+    <!-- 부트스트랩을 써서 간단하게 웹 퍼블리싱을 할 수 있다 -->
+</head>
+<body>
+    <header>
+        <div id = "logo"> <!--id는 식별자. 중복되면 안된다-->
+            <a href = "#">
+                <h1>Dream Jeju</h1>
+            </a>
+        </div> <!--영역 잡을 때 쓰는 division-->
+        <nav>
+            <ul id="topMenu"> <!-- ol : ordered list --> <!-- ul : unordered list -->
+                <li><a href="#">단체 여행</li>  <!--어디로 이동해야 할지 모르겠을 때 #을 넣는다-->
+                <li><a href="#">맞춤 여행</li>
+                <li><a href="#">갤러리</li>
+                <li><a href="#">문의하기</li>
+            </ul>
+        <nav>
+    </header>
+
+    <main class = "contents">
+        <section id = "healing">
+           <h2>몸과 마음이 치유되는 섬</h2>
+            <div class = "detail">
+                <img src = "./img/healing.jpg">
+                <p>씨앗의 공간으로 안내합니다.</p>
+                <p>섭섭이와 함께 힐링하자!</p>
+            </div>
+            <div class = "schedule">
+                <h3>상세 일정</h3>
+                <ul>
+                    <li>여행 기간: 무박 2일</li>
+                    <li>여행 일정: 상담 후 결정</li>
+                </ul>
+            </div>
+        </section>
+        <section id = "activity">
+            <h2>다양한 액티비티가 기다리는 섬</h2>
+            <div class = "detail">
+                <img src = "./img/activity.jpg">
+                <p>레저의 천국 라오스</p>
+                <p>섭섭이와 함께 액티비티하자!!</p>
+            </div>
+            <div class = "schedule">
+                <h3>상세 일정</h3>
+            <ul>
+                <li>여행 기간 : 무박 2일</li>
+                    <li>여행 일정 : 상담 후 결정</li>
+        </section>
+    </main>
+</body>
+</html>

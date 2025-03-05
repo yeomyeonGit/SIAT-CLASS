@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./css/DOM05.css" rel = "stylesheet">
+</head>
+<body>
+    <div class = "container"> <!--css는 보통 클래스, 중첩됐을 경우 id-->
+        <div class = "row">
+            <ul>
+                <li>
+                    <img src ="./img/tree-1-thumb.jpg"
+                    data-src="./img/tree-1.jpg" class="tree">
+                </li>
+                <li>
+                    <img src ="./img/tree-2-thumb.jpg"
+                    data-src="./img/tree-2.jpg" class="tree">
+                </li>
+                <li>
+                    <img src ="./img/tree-3-thumb.jpg"
+                    data-src="./img/tree-3.jpg" class="tree">
+                </li>
+            </ul>
+
+        </div>
+        <div class = "lightbox">
+            <img src = "./img/tree-1.jpg" id = "boxImg">
+        </div>
+    </div>
+    <script>
+
+        images = document.querySelectorAll('.tree') ;
+        lightbox = document.querySelector('.lightbox');
+        boxImg = document.querySelector('#boxImg')
+
+        for(idx = 0; idx < images.length; idx++) {
+            images[idx].addEventListener('click', showImg)
+        }
+
+        function showImg() {
+            lightbox.style.display = 'block' ;
+            boxImg.src = this.dataset.src ;
+        }
+        
+        lightbox.onclick = function() {
+            lightbox.style.display = 'none';
+        }
+
+    </script>
+    
+</body>
+</html>
