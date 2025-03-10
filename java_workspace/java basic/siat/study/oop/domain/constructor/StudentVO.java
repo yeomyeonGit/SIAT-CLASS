@@ -20,8 +20,13 @@ public class StudentVO extends PersonVO {   // PersonVO 클래스를 상속받�
         this.stuID = stuID;
     }
 
-    public String stuInfo() {
+    public String stuInfo() {   // 오버라이딩한 상태
         return perInfo() + "\t 학번: " + this.getStuID() ;
+        // return "이름: " + this.getName() + "\t 주소 :" + this.getAddr() + "\t 학번: " + this.getStuID()  ;
+    }
+
+    public String perInfo() {   // 오버라이딩한 상태
+        return super.perInfo() + "\t 학번: " + this.getStuID() ;
         // return "이름: " + this.getName() + "\t 주소 :" + this.getAddr() + "\t 학번: " + this.getStuID()  ;
     }
 

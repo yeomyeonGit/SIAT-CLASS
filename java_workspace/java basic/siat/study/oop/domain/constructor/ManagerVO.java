@@ -27,6 +27,9 @@ public class ManagerVO extends PersonVO {
         return perInfo() + "\t 부서: " + dept;
     }
 
+    public String perInfo() {
+        return super.perInfo() + "\t 부서: " + dept;
+    }
     
     
 }

@@ -16,6 +16,11 @@ public class StudentVO extends PersonVO {   // PersonVO 클래스를 상속받�
         
     }
 
+    // public String perInfo() {
+    //     return super.perInfo() + "\t 학번: " + this.getStuID() ;
+        
+    // }
+
 
     
 }

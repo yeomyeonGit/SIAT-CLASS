@@ -1,6 +1,11 @@
 {
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "d:\\KIST박홍진\\lombok.jar"
-    ]
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar",
+            "d:\\KIST박홍진\\lombok.jar"
+        ],
+        "exclude": [
+            "d:\\KIST박홍진\\lombok.jar"
+        ]
+    }
 }
