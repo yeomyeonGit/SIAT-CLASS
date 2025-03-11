@@ -15,8 +15,8 @@ public class TeacherVO extends PersonVO {
         
     }
 
-    // public String perInfo() {
-    //     return super.perInfo() + "\t 과목: " + this.getSubject() ;
+    public String perInfo() {
+        return super.perInfo() + "\t 과목: " + this.getSubject() ;
         
-    // }
+    }
 }

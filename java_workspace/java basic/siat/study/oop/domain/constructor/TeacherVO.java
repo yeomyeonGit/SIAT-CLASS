@@ -25,9 +25,10 @@ public class TeacherVO extends PersonVO {
     public String teacherInfo() {
         return perInfo() + "\t 과목: " + this.getSubject() ;
     }
-    // public String perInfo() {   // 메서드 오버라이딩
-    //     return super.perInfo() + "\t 과목: " + this.getSubject() ;
-    // }
+    
+    public String perInfo() {   // 메서드 오버라이딩
+        return super.perInfo() + "\t 과목: " + this.getSubject() ;
+    }
 
     
     

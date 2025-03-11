@@ -42,7 +42,7 @@ public class PolyMorphismService {
             
             case "매니저":
                 ManagerVO emp = new ManagerVO(name, addr, comm) ;
-                setPerson(emp);
+                setPerson(emp);   // 매개변수의 다양성
                 break;      
         }        
     }
