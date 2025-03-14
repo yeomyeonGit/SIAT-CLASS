@@ -9,6 +9,7 @@ Optional ?
 - 예외 처리를 더 쉽게 할 수 있어 코드의 가독성이 높아지고, 유지 보수도 편하다
 - ver 8
 - Spring JPA(Java Persistance API)에서 많이 사용
+
 주의사항)
 - 사용 의도에 맞게 사용해야 한다 (null을 할당 X)
 - 메서드의 반환 타입으로 사용 (전역 변수 타입 x, 매개변수 x)
@@ -19,16 +20,23 @@ public class OptionalMain {
     public static void main(String[] args) {
         System.out.println("main start");
 
+        // 1. getStr() 메서드 호출
         OptionalApp app = new OptionalApp() ;
-        Optional<PersonVO> result = app.findById(1L) ;   // 1L: int 1을 Long 형으로 바꾼다
-        if (result.isPresent()) {
-            System.out.println(result.get().perInfo() );
-        };
+        System.out.println("옵셔널 아님(String) & null 반환: "+ app.getStr());
 
+        // 2. findById() 메서드 호출하기
+        Optional<PersonVO> result = app.findById(1L) ;
+        System.out.println("옵셔널 출력: " + result);
+        // 출력: Optional[siat.study.oop.domain.constructor.StudentVO@14ae5a5]
+        // 개념: 참조 타입을 바로 출력하면 객체의 옵셔널[주소]값이 나온다
+
+        System.out.println(result.get());   // 옵셔널 메서드 .get() 사용. 이러면 Optional만 빠진 주소값이 나온다.
+        if (result.isPresent()) {
+            System.out.println("객체의 메서드 출력: " + result.get().perInfo());   // 객체를 가져온 거니까 객체의 메서드를 가져오면 됨
+        }
+        
         System.out.println(">>>");
         Optional<List<PersonVO>> list = app.getUsers() ;
-
-
 
 
         if (list.isPresent()) {
@@ -54,8 +62,8 @@ public class OptionalMain {
             System.out.println(opt.get()); // 꺼내오는 방법
         }
         // opt.ifPresent(str -> System.out.print(str)) ;
-        opt.ifPresentOrElse(str -> System.out.println(str) , 
-                            () -> System.out.println("empty") ) ;
+        // opt.ifPresentOrElse( str -> System.out.println(str) , 
+        //                     () -> System.out.println("empty") ) ;  이 부분 오류 해결하기
         
         String value = empty.orElse("Default Value") ;
         System.out.println( value );
