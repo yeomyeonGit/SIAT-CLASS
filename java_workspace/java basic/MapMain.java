@@ -32,7 +32,5 @@ public class MapMain {
     System.out.println(dto.get("name"));
         
     }
-
-    
-    
+   
 }
