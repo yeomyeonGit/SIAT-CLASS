@@ -18,11 +18,13 @@ public class OptionalApp {
     public Optional<PersonVO> findById(Long userId) {
         Optional<PersonVO> person = Optional.of(new StudentVO("a", "a", "a")) ;
         return person ;
+        // 옵셔널을 반환하는 함수
 
     }
     // 무슨 값을 넣어도 a, a, a, a가 입력된 StudentVO 객체를 반환하는 메서드
 
-    public Optional<List<PersonVO>> getUsers() {
+    // 객체 여러 개를 저장한 컬렉션 List를 생성하는 메서드 정의
+    public Optional<List<PersonVO>>  getUsers() {
         List<PersonVO> list = new ArrayList<>() ;
         list.add(new StudentVO("a", "a", "a")) ;
         list.add(new TeacherVO("a", "a", "a")) ;
@@ -30,5 +32,6 @@ public class OptionalApp {
         Optional<List<PersonVO>> persons = Optional.of(list) ;
         return persons ;
     }
+    
     
 }
