@@ -45,7 +45,6 @@ public class LambdaMain {
         SiatFunction lambdaSumFunc = (x, y) -> x + y ;
         System.out.println(lambdaSumFunc.max(100, 20));
         
-
         // 자바 라이브러리에서 제공하는 함수들
         // Supplier: 매개변수가 없고 반환값만 있는 함수형 인터페이스
 
@@ -60,13 +59,11 @@ public class LambdaMain {
                 .andThen(System.out::println)
                 .accept("jslim siat");
         
-        
         // Function: 매개 변수가 있고 반환값도 있는 함수형 인터페이스
         Function<String, Integer> function = (str) -> str.length() ;   // 적용할 함수를 정의
         // 입력으로는 String을 받고, 반환으로는 Integer를 반환하겠다는 뜻
         int len = function.apply("jslim siat") ;
         System.out.println(len);
-
 
         // Predicate: 입력값(매개변수)가 있고 반환값이 Boolean인 함수형 인터페이스
         Predicate<String> predicate = (str) -> str.equals("siat") ;
