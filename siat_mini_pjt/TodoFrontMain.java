@@ -1,6 +1,7 @@
 import todo.front.FrontController;
+import todo.view.TodoView;
 
-public class TodoFronMain {
+public class TodoFrontMain {
     public static void main(String[] args) {
         /* 
         FrontController front = new FrontController() ;
@@ -9,6 +10,10 @@ public class TodoFronMain {
         TodoDeleteController deleteCtrl = front.requestProcess(3);
         TodoUpdateController updateCtrl = front.requestProcess(4);
         */
+
+        System.out.println(">>> Todo Service Menu <<<");
+        TodoView view = new TodoView() ;
+        view.nemu(); 
     }
     
 }
