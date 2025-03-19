@@ -5,8 +5,11 @@ DB에 요청하는 것이기 때문에, 매개변수로 RequestDTO에서 받은 
 
  package todo.model.dao ;
 
+import java.lang.StackWalker.Option;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import todo.model.domain.TodoRequestDTO;
 import todo.model.domain.TodoResponseDTO;
@@ -37,37 +40,48 @@ public class TodoDAO {
     }
 
     // 상세보기
-    public TodoResponseDTO selectRow(int number) {
+    public List<TodoResponseDTO> selectRow() {
         System.out.println(">>>> dao selectRow");
-        return null ;
+        return list ;
     }
 
     // 삭제
     public int deleteRow(int seq) {
         System.out.println(">>> dao deleteRow");
-        list.remove(seq) ;
-        return 1 ;
+        int flag = 0 ;
+        for (int idx = 0 ; idx < list.size() ; idx++) {
+            if (list.get(idx).getSeq() == seq) {
+                list.remove(idx) ;
+                flag = 1 ;
+            }
+        }
+        return flag ;
     }
 
     // 수정
-    public int updateRow(TodoRequestDTO request) {
+    public int updateRow(Map<String, Object> map) {
         System.out.println(">>> dao updateRow");
-        TodoResponseDTO response = TodoResponseDTO.builder()
-                                                 .title(request.getTitle())
-                                                 .content(request.getContent())
-                                                 .check(0)
-                                                 .startDate(request.getStartDate())
-                                                 .endDate(request.getEndDate())
-                                                 .priority(request.getPriority())
-                                                 .build() ;
-        list.set(request.getSeq(), response) ;
-        return 0 ;
+        int flag = 0 ;
+        for (int idx = 0 ; idx < list.size() ; idx++) {
+            if (list.get(idx).getSeq() == (Integer) (map.get("seq"))) {
+                list.get(idx).setContent((String) map.get("content"));
+                list.get(idx).setCheck((Integer) map.get("check"));
+                flag = 1 ;
+            }
+        }
+        return flag ;
     }
 
     // 전체 보기: 결과를 배열에 담아야 함
-    public List<TodoResponseDTO> selectRow() {
+    public Optional<TodoResponseDTO> readDetailRow(int seq) {
         System.out.println(">>> dao selectRow");
-        return list ;
+        Optional<TodoResponseDTO> response = Optional.empty() ;
+        for (int idx = 0 ; idx < list.size() ; idx++) {
+            if (list.get(idx).getSeq() == seq) {
+                response = Optional.of(list.get(idx)) ;
+            }
+        }return response ;
+        
     }
 
 }

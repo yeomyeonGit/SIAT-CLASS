@@ -11,6 +11,7 @@ import lombok.ToString;
 @Builder
 @Getter
 @ToString
+@Setter
 
 public class TodoResponseDTO {
 

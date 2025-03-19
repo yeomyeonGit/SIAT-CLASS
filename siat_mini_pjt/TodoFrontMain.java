@@ -13,7 +13,7 @@ public class TodoFrontMain {
 
         System.out.println(">>> Todo Service Menu <<<");
         TodoView view = new TodoView() ;
-        view.nemu(); 
+        view.menu(); 
     }
     
 }

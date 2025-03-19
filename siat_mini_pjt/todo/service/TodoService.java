@@ -1,5 +1,7 @@
 package todo.service ;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import todo.model.dao.TodoDAO;
 import todo.model.domain.TodoRequestDTO;
@@ -16,9 +18,9 @@ public class TodoService {
         return dao.insertRow(request) ;
     }
 
-    public TodoResponseDTO selectService(int number) {
+    public List<TodoResponseDTO> selectService() {
         System.out.println(">>> service selectService");
-        return dao.selectRow(number) ;
+        return dao.selectRow() ;
     }
 
     // 삭제
@@ -28,15 +30,15 @@ public class TodoService {
     }
 
     // 수정
-    public int updateService(TodoRequestDTO request) {
+    public int updateService(Map<String, Object> map) {
         System.out.println(">>> service updateService");
-        return dao.updateRow(request) ;
+        return dao.updateRow(map) ;
     }
 
     // 전체 보기: 결과를 배열에 담아야 함
-    public List<TodoResponseDTO> selectService() {
+    public Optional<TodoResponseDTO> readDetailService(int seq) {
         System.out.println(">>> dao selectService: search all");
-        return dao.selectRow() ;
+        return dao.readDetailRow(seq) ;
     }
     
 }

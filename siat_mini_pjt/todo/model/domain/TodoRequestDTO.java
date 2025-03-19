@@ -12,7 +12,6 @@ import lombok.ToString;
 @ToString
 
 public class TodoRequestDTO {
-    private int    seq ;
     private String title ;
     private String content ;
     private String startDate ;

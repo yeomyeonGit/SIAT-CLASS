@@ -1,10 +1,16 @@
 package todo.front;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import todo.ctrl.TodoCheckController;
 import todo.ctrl.TodoDeleteController;
 import todo.ctrl.TodoInsertController;
+import todo.ctrl.TodoReadController;
 import todo.ctrl.TodoSelectController;
+import todo.ctrl.TodoSortController;
+import todo.ctrl.TodoUncheckController;
 import todo.ctrl.TodoUpdateController;
 import todo.factory.BeanFactory;
 import todo.model.domain.TodoRequestDTO;
@@ -26,6 +32,32 @@ public class FrontController {
         return list ;
     }
 
+    public List<TodoResponseDTO> checkList() {
+        System.out.println(" >>> FrontController checked list");
+        TodoCheckController checkCtrl = (TodoCheckController) factory.getCtrl("check") ;
+        List<TodoResponseDTO> list = checkCtrl.checkTodo() ;
+
+        return list ;
+    }
+
+    public List<TodoResponseDTO> uncheckList() {
+        System.out.println(" >>> FrontController unchecked list");
+        TodoUncheckController uncheckCtrl = (TodoUncheckController) factory.getCtrl("uncheck") ;
+        List<TodoResponseDTO> list = uncheckCtrl.uncheckTodo() ;
+
+        return list ;
+    }
+
+    public List<TodoResponseDTO> priority() {
+        System.out.println(" >>> FrontController priority list");
+        TodoSortController sortCtrl = (TodoSortController) factory.getCtrl("sort") ;
+        List<TodoResponseDTO> list = sortCtrl.sortTodo() ;
+
+        return list ;
+    }
+    
+
+
     public int register(String title, String content, String startDate, 
                                             String endDate, int priority) {
         System.out.println(" >>> FrontController register");
@@ -42,19 +74,14 @@ public class FrontController {
 
     }
 
-    public int update(int seq, String title, String content, String startDate,
-                                                String endDate, int priority) {
+    public int update(int seq, String content, int check) {
         System.out.println(">>> FrontController update");
         TodoUpdateController updateCtrl = (TodoUpdateController) factory.getCtrl("update") ;
-        TodoRequestDTO request = TodoRequestDTO.builder()
-                                                .seq(seq)
-                                                .title(title)
-                                                .content(content)
-                                                .startDate(startDate)
-                                                .endDate(endDate)
-                                                .priority(seq)
-                                                .build() ;
-        int upNum = updateCtrl.updateCntrl(request) ;
+        Map<String, Object> map = new HashMap<>() ;
+        map.put("seq", seq) ;
+        map.put("content", content) ;
+        map.put("check", check) ;
+        int upNum = updateCtrl.updateCntrl(map) ;
         return upNum ;
 
     }
@@ -66,5 +93,12 @@ public class FrontController {
         return delNum ;
         
 
+    }
+
+    public TodoResponseDTO read(int seq) {
+        System.out.println(" >>> FrontController read");
+        TodoReadController readCntrl = (TodoReadController) factory.getCtrl("read") ;
+        TodoResponseDTO read = readCntrl.selectTodo(seq) ;
+        return read ;
     }
 }
