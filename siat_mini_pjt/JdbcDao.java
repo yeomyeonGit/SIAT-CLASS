@@ -1,10 +1,15 @@
 import java.sql.Connection;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import todo.model.domain.TodoRequestDTO;
+import todo.model.domain.TodoResponseDTO;
 
 import java.sql.DriverManager;
 
@@ -115,4 +120,81 @@ public class JdbcDao {
         return flag ;
     }
 
+    public List<TodoResponseDTO> selectRow() {
+        System.out.println(">>>> dao selectRow");
+        List<TodoResponseDTO>   list = new ArrayList<>() ;
+        Connection conn =       null ;
+        PreparedStatement       pstmt = null ;
+        ResultSet               rset = null ;
+        String selectSQL = "SELECT SEQ, TITLE, CONTENT, STARTDATE, STATUS, ENDDATE, PRIORITY FROM JDBC_TODO_TBL" ;
+        try {
+            conn = DriverManager.getConnection(URL, USER, PASSWORD) ;
+            pstmt = conn.prepareStatement(selectSQL);
+            rset = pstmt.executeQuery() ;
+            while (rset.next()) {
+                TodoResponseDTO response = TodoResponseDTO.builder()
+                                            .seq(rset.getInt(1))
+                                            .title(rset.getString(2))
+                                            .content(rset.getString("content"))
+                                            .startDate(rset.getString(4))
+                                            .status(rset.getString(5))
+                                            .endDate(rset.getString(6))
+                                            .priority(rset.getInt(7))
+                                            .build() ;
+                
+                list.add(response) ;
+            }
+        
+        } catch(Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close() ;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list ;
+        
+    }
+
+    public Optional<TodoResponseDTO> selectRow(int seq) {
+        System.out.println(">>> dao selectRow");
+        Optional<TodoResponseDTO>   response = Optional.empty() ;
+        Connection                  conn = null ;
+        PreparedStatement           pstmt = null ;
+        ResultSet                   rset = null ;
+        String selectSQL = "SELECT * FROM JDBC_TODO_TBL " +
+                            "WHERE SEQ = ?" ;
+        try {
+            conn = DriverManager.getConnection(URL, USER, PASSWORD) ;
+            pstmt = conn.prepareStatement(selectSQL);
+            pstmt.setInt(1, seq) ;
+            rset = pstmt.executeQuery() ;
+            while (rset.next()) {
+                response = Optional.of ( TodoResponseDTO.builder()
+                                            .seq(rset.getInt(1))
+                                            .title(rset.getString(2))
+                                            .content(rset.getString(3))
+                                            .startDate(rset.getString(4))
+                                            .status(rset.getString(5))
+                                            .endDate(rset.getString(6))
+                                            .priority(rset.getInt(7))
+                                            .build() ) ;
+        }
+    }catch(Exception e) {
+        e.printStackTrace();
+    } finally {
+        try {
+            conn.close() ;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    return response ;
+        
+    }
+
 }
+    

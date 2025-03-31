@@ -39,7 +39,7 @@ public class TodoDAO {
         return 1 ;
     }
 
-    // 상세보기
+    // 전체보기
     public List<TodoResponseDTO> selectRow() {
         System.out.println(">>>> dao selectRow");
         return list ;
@@ -72,7 +72,7 @@ public class TodoDAO {
         return flag ;
     }
 
-    // 전체 보기: 결과를 배열에 담아야 함
+    // 상세보기: 결과를 배열에 담아야 함
     public Optional<TodoResponseDTO> readDetailRow(int seq) {
         System.out.println(">>> dao selectRow");
         Optional<TodoResponseDTO> response = Optional.empty() ;
