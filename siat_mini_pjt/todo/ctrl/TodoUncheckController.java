@@ -14,7 +14,7 @@ public class TodoUncheckController {
     public List<TodoResponseDTO> uncheckTodo() {
         System.out.println(">>> ctrl uncheckCtrl");
         List<TodoResponseDTO> list = service.selectService() ;
-        return list.stream().filter(s -> s.getCheck() == 0).toList() ;
+        return list.stream().filter(s -> s.getStatus().equals("N")).toList() ;
         
     }
     

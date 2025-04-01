@@ -4,13 +4,14 @@ import java.util.Map;
 import java.util.Optional;
 
 import todo.model.dao.TodoDAO;
+import todo.model.dao.TodoOracleDao;
 import todo.model.domain.TodoRequestDTO;
 import todo.model.domain.TodoResponseDTO;
 
 public class TodoService {
-    private TodoDAO dao ; // 변수 정의
+    private TodoOracleDao dao ; // 변수 정의
     public TodoService() {  // 생성자와 함께 데이터를 전달할 객체 생성
-        dao = new TodoDAO() ;
+        dao = new TodoOracleDao() ;
     }
 
     public int insertService(TodoRequestDTO request) {
@@ -38,7 +39,14 @@ public class TodoService {
     // 전체 보기: 결과를 배열에 담아야 함
     public Optional<TodoResponseDTO> readDetailService(int seq) {
         System.out.println(">>> dao selectService: search all");
-        return dao.readDetailRow(seq) ;
+        return dao.selectRow(seq) ;
     }
+
+    // 정렬
+    public List<TodoResponseDTO> sortService() {
+        System.out.println(">>> dao selectService: sort");
+        return dao.selectRow() ;
+    }
+    
     
 }

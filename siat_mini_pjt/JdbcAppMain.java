@@ -8,7 +8,7 @@ import todo.model.domain.TodoResponseDTO;
 public class JdbcAppMain {
     public static void main(String[] args) {
         JdbcDao dao = new JdbcDao() ;
-        System.out.println(">>> 입력") ;
+        // System.out.println(">>> 입력") ;
         // TodoRequestDTO request = TodoRequestDTO.builder()
         //                         .title("jdbc")
         //                         .content("jdbc")
@@ -41,15 +41,15 @@ public class JdbcAppMain {
         //     System.out.println("1 row update fail") ;
         // } 
 
-        System.out.println("출력") ;
-        List<TodoResponseDTO> list = dao.selectRow() ;
-        for(TodoResponseDTO response : list) {
-            System.out.println(response) ;
-        }
-
         // System.out.println("출력") ;
-        // Optional<TodoResponseDTO> op = dao.selectRow(3) ;
-        // System.out.println(op) ;
+        // List<TodoResponseDTO> list = dao.selectRow() ;
+        // for(TodoResponseDTO response : list) {
+        //     System.out.println(response) ;
+        // }
+
+        System.out.println("출력") ;
+        Optional<TodoResponseDTO> op = dao.selectRow(3) ;
+        System.out.println(op) ;
     }
     
 }

@@ -14,7 +14,7 @@ public class TodoCheckController {
     public List<TodoResponseDTO> checkTodo() {
         System.out.println(">>> ctrl checkTodo");
         List<TodoResponseDTO> list = service.selectService() ;
-        return list.stream().filter(s -> s.getCheck() == 1).toList() ;
+        return list.stream().filter(s -> s.getStatus().equals("Y")).toList() ;
         
     }
 }

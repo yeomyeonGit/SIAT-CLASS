@@ -13,8 +13,8 @@ public class TodoSortController {
     }
 
     public List<TodoResponseDTO> sortTodo() {
-        System.out.println(">>> ctrl uncheckCtrl");
-        List<TodoResponseDTO> list = service.selectService() ;
+        System.out.println(">>> ctrl sortCtrl");
+        List<TodoResponseDTO> list = service.sortService() ;
         return list.stream().sorted(Comparator.comparing(TodoResponseDTO::getPriority).reversed()).toList() ;
 
         //(Comparator.comparing(TodoResponseDTO::getPriority).reversed()).toList()

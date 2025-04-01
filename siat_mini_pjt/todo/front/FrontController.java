@@ -58,15 +58,12 @@ public class FrontController {
     
 
 
-    public int register(String title, String content, String startDate, 
-                                            String endDate, int priority) {
+    public int register(String title, String content, int priority) {
         System.out.println(" >>> FrontController register");
         TodoInsertController insertCtrl = (TodoInsertController) factory.getCtrl("register") ;
         TodoRequestDTO request = TodoRequestDTO.builder()
                                                 .title(title)
                                                 .content(content)
-                                                .startDate(startDate)
-                                                .endDate(endDate)
                                                 .priority(priority)
                                                 .build() ;
         int regiNum = insertCtrl.insertCtrl(request) ;
@@ -74,13 +71,13 @@ public class FrontController {
 
     }
 
-    public int update(int seq, String content, int check) {
+    public int update(int seq, String content, String check) {
         System.out.println(">>> FrontController update");
         TodoUpdateController updateCtrl = (TodoUpdateController) factory.getCtrl("update") ;
         Map<String, Object> map = new HashMap<>() ;
         map.put("seq", seq) ;
         map.put("content", content) ;
-        map.put("check", check) ;
+        map.put("status", check) ;
         int upNum = updateCtrl.updateCntrl(map) ;
         return upNum ;
 
@@ -101,4 +98,6 @@ public class FrontController {
         TodoResponseDTO read = readCntrl.selectTodo(seq) ;
         return read ;
     }
+
+    
 }

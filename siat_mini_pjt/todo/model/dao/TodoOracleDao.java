@@ -1,5 +1,7 @@
-import java.sql.Connection;
+package todo.model.dao;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,28 +13,14 @@ import java.util.Optional;
 import todo.model.domain.TodoRequestDTO;
 import todo.model.domain.TodoResponseDTO;
 
-import java.sql.DriverManager;
-
-public class JdbcDao {
-    /* try {
-         * 1. driver loading : 1번만
-         * 2. Connection   (2번~6번 1 싸이클)
-         * 3. Statement, PreparedStatement (SQL)
-         * 4. ResultSet executeQuery() - Select
-         *    int executeUpdate() - Insert, Update, Delete
-         * 5. ResultSet Handling
-         * 6. Connection close
-         * } catch() {
-         * 
-         * }
-    */
+public class TodoOracleDao {
     public static final String DRIVER = "oracle.jdbc.driver.OracleDriver" ;    // 상수
     public static final String URL = "jdbc:oracle:thin:@localhost:1521/xe";
     public static final String USER = "hr";
     public static final String PASSWORD = "hr";
 
 
-    public JdbcDao() {
+    public TodoOracleDao() {
         try {
             Class.forName(DRIVER) ;
             System.out.println("1. Driver loading ok!!!") ;
@@ -55,6 +43,7 @@ public class JdbcDao {
             pstmt.setString(1, request.getTitle()) ;
             pstmt.setString(2, request.getContent()) ;
             pstmt.setString(3, request.getStatus()) ;
+            pstmt.setInt(3, request.getPriority()) ;
             flag = pstmt.executeUpdate() ;
         } catch(Exception e) {
             e.printStackTrace();
@@ -136,9 +125,9 @@ public class JdbcDao {
                                             .seq(rset.getInt(1))
                                             .title(rset.getString(2))
                                             .content(rset.getString("content"))
-                                            .startDate(rset.getString(4))
+                                            .startDate(rset.getDate(4))
                                             .status(rset.getString(5))
-                                            .endDate(rset.getString(6))
+                                            .endDate(rset.getDate(6))
                                             .priority(rset.getInt(7))
                                             .build() ;
                 
@@ -176,9 +165,9 @@ public class JdbcDao {
                                             .seq(rset.getInt(1))
                                             .title(rset.getString(2))
                                             .content(rset.getString(3))
-                                            .startDate(rset.getString(4))
+                                            .startDate(rset.getDate(4))
                                             .status(rset.getString(5))
-                                            .endDate(rset.getString(6))
+                                            .endDate(rset.getDate(6))
                                             .priority(rset.getInt(7))
                                             .build() ) ;
         }
@@ -197,6 +186,4 @@ public class JdbcDao {
     return response ;
         
     }
-
 }
-    
