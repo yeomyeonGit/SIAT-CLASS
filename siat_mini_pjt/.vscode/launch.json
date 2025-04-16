@@ -1,0 +1,36 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "JdbcAppMain",
+            "request": "launch",
+            "mainClass": "JdbcAppMain",
+            "projectName": "siat_mini_pjt_b09d927a"
+        },
+        {
+            "type": "java",
+            "name": "TodoAppMain",
+            "request": "launch",
+            "mainClass": "TodoAppMain",
+            "projectName": "siat_mini_pjt_b09d927a"
+        },
+        {
+            "type": "java",
+            "name": "TodoFrontMain",
+            "request": "launch",
+            "mainClass": "TodoFrontMain",
+            "projectName": "siat_mini_pjt_b09d927a"
+        }
+    ]
+}
