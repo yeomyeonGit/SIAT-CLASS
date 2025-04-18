@@ -5,5 +5,7 @@
     <typeAliases>
         <typeAlias alias="todoRequestDTO" type="com.siat.testspring.test.model.dto.TodoRequestDTO"/>
         <typeAlias alias="todoResponseDTO" type="com.siat.testspring.test.model.dto.TodoResponseDTO"/>
+        <typeAlias alias="userRequestDTO" type = "com.siat.testspring.user.model.domain.UserRequestDTO"/>
+        <typeAlias alias="userResponseDTO" type = "com.siat.testspring.user.model.domain.UserResponseDTO"/>
     </typeAliases>
 </configuration>

@@ -2,6 +2,7 @@
 			contentType="text/html; charset=UTF-8"
     		pageEncoding="UTF-8"%>
 <%@ taglib  uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+	<c:if test="${ UserSession != null }">
+		<h2>${ UserSession.name }님 환영합니다</h2>
+	</c:if>
 	<table class="table">
 	    <thead>
 	      	<tr>
