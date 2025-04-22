@@ -49,14 +49,39 @@ import reportWebVitals from './reportWebVitals';
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 
-import Interlocking from './test/Interlocking';
+// import Interlocking from './test/Interlocking';
+// // 라이브러리를 등록해
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//   <React.StrictMode>
+//     <Interlocking />  
+//     {/* App.js 파일을 index.html에서 사용하고 싶으면 여기에 컴포넌트로 등록한다. */}
+//     {/* 하나의 js 파일을 태그로 사용한다 */}
+//   </React.StrictMode>
+// );
+
+// import CommentList from './component/CommentList';
+// // 라이브러리를 등록해
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//   // <React.StrictMode> 필요 없음. 다음부터 안 쓸거임.
+//     <CommentList />  
+//   // </React.StrictMode>
+// );
+// reportWebVitals();
+
+// import Counter from './state/Counter';
+// // 라이브러리를 등록해
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//     <Counter />  
+// );
+// reportWebVitals();
+
+import StateSample from './state/StateSample';
 // 라이브러리를 등록해
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <Interlocking />  
-    {/* App.js 파일을 index.html에서 사용하고 싶으면 여기에 컴포넌트로 등록한다. */}
-    {/* 하나의 js 파일을 태그로 사용한다 */}
-  </React.StrictMode>
+    <StateSample />  
 );
 reportWebVitals();
