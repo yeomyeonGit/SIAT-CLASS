@@ -34,16 +34,11 @@ import reportWebVitals from './reportWebVitals';
 //   </React.StrictMode>
 // );
 
-// import App from './App'; 
-// js 파일을 App이라는 이름으로 import
-// const root = ReactDOM.createRoot(document.getElementById('root'));
-// root.render(
-//   <React.StrictMode>
-//     <App />  
-//     {/* App.js 파일을 index.html에서 사용하고 싶으면 여기에 컴포넌트로 등록한다. */}
-//     {/* 하나의 js 파일을 태그로 사용한다 */}
-//   </React.StrictMode>
-// );
+import App from './App'; 
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    <App />  
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
@@ -78,10 +73,30 @@ import reportWebVitals from './reportWebVitals';
 // );
 // reportWebVitals();
 
-import StateSample from './state/StateSample';
-// 라이브러리를 등록해
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <StateSample />  
-);
+// import StateSample from './state/StateSample';
+// // 라이브러리를 등록해
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//     <StateSample />  
+// );
+
+// import EventSample from './event/EventSample';
+// // 라이브러리를 등록해
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//     <EventSample />  
+// );
+
+// import LoginForm from './event/LoginForm';
+// // 라이브러리를 등록해
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//     <LoginForm />  
+// );
+
+// import IndexPage from './pages/IndexPage';
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//     <IndexPage />  
+// );
 reportWebVitals();
