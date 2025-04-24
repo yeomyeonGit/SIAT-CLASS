@@ -99,4 +99,10 @@ root.render(
 // root.render(
 //     <IndexPage />  
 // );
+
+// import LoginoutCtrl from './rendering/LoginoutCtrl'; 
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//     <LoginoutCtrl />  
+// );
 reportWebVitals();

@@ -3,6 +3,8 @@ import './App.css';
 import IndexPage from "./pages/IndexPage";
 import LoginForm from "./event/LoginForm";
 import SuccessPage from "./pages/SuccessPage";
+import TodoView from "./items/TodoView";
+
 
 function App() {
   return (
@@ -12,6 +14,7 @@ function App() {
         <Route path="/" element={ <IndexPage />}></Route>
         <Route path="/user/loginForm" element={ <LoginForm />}></Route>
         <Route path="/user/success" element={ <SuccessPage />}></Route>
+        <Route path="/todo/details" element={ <TodoView />}></Route>
       </Routes>
     </BrowserRouter>
   );

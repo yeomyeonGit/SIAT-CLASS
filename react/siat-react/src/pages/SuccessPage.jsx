@@ -1,15 +1,26 @@
 import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom" ;
 import api from "../api/axios"
+import TodoItem from "../items/TodoItem";
 
 function SuccessPage(props) {
 
     const [todoLists, setLists] =  useState([]) ;
 
+    // mount가 있으면 effect이 있다는 것, side-effect 실행
     useEffect(() => {
-        console.log("debug >>>> useEffect >>>>>>>>>>>>>>>>>> ")
+        console.log("debug >>>> useEffect >>>>>>>>>>>>>>>>>> ") ;
         getList() ;
     }, []) ;
+
+    // 🤔 왜 이렇게 쓰냐?
+    // 주로 초기 데이터 로딩에 사용해.
+
+    // 예를 들어:
+
+    // API 호출해서 리스트 불러오기
+
+    // 처음 한 번만 뭔가 등록하기 (이벤트 리스너 등)
 
     const getList = async () => {
         console.log("debug >>>>> getList endpoint: / react / list")
@@ -18,8 +29,17 @@ function SuccessPage(props) {
         console.log(`response status: ${response.status}` )
         console.log(`response data: ${response.data}`)
         setLists(response.data);
-
     }
+
+    const deleteHandler = async (seq) => {
+        console.log("debug >>>>>>>>>>>>> deleteHandler: ", seq)
+        const response = await api.delete(`react/delete/${seq}`) ;
+        if(response.status == 204) {
+            // getList();
+            setLists(...[todoLists.filter(list=>list.seq !== seq)])
+        }
+    }
+
 
     // useNavigate() 이용해서 컴포넌트에서 컴포넌트 이동
     return (
@@ -31,16 +51,18 @@ function SuccessPage(props) {
                     <th>Title</th>
                     <th>Status</th>
                     <th>Priority</th>
+                    <th>Discard</th>
                 </tr>
                 </thead>
                 <tbody>
                     { todoLists.map( todoList => {
                         return (
-                        <tr>
-                            <td>{todoList.title}</td>
-                            <td>{todoList.status}</td>
-                            <td>{todoList.priority}</td>
-                        </tr>
+                            <TodoItem key={todoList.seq}
+                                      data={todoList}
+                                      handler={deleteHandler}
+                                    />
+                            // 객체를 통째로 넘기는 방법
+                            // key는 유일한 값 - 기본키
                         );
 
                     })
