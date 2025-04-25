@@ -6,17 +6,17 @@ import Greeting from "./Greeting";
 function LoginoutCtrl(props) {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-    const loginHandler = () => {
-        setIsLoggedIn(true) ;
-        console.log("debug >>>>> loginHandler")
-    } 
+    // const loginHandler = () => {
+    //     setIsLoggedIn(true) ;
+    //     console.log("debug >>>>> loginHandler")
+    // } 
 
-    const logoutHandler = () => {
-        setIsLoggedIn(false);
-        console.log("debug >>>>> logoutHandler")
-    }
+    // const logoutHandler = () => {
+    //     setIsLoggedIn(false);
+    //     console.log("debug >>>>> logoutHandler")
+    // }
 
-    let button ;
+    // let button ;
 
     // 조건에 따라 렌더링
     // if (isLoggedIn) {
@@ -28,10 +28,15 @@ function LoginoutCtrl(props) {
 
     return (
         <div>
-            <Greeting isLoggedIn={isLoggedIn}/>
-            {isLoggedIn
+            <Greeting isLogIn={isLoggedIn}/>
+            
+            {/* {isLoggedIn
                 ? <LogoutBtn handler={logoutHandler} />
                 : <LoginBtn handler={loginHandler} />
+            } */}
+            {isLoggedIn
+                ? <LogoutBtn isLogIn={setIsLoggedIn} />
+                : <LoginBtn isLogIn={setIsLoggedIn} />
             }
 
         </div>    

@@ -34,11 +34,11 @@ import reportWebVitals from './reportWebVitals';
 //   </React.StrictMode>
 // );
 
-import App from './App'; 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <App />  
-);
+// import App from './App'; 
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//     <App />  
+// );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
@@ -105,4 +105,28 @@ root.render(
 // root.render(
 //     <LoginoutCtrl />  
 // );
+
+// import FormSample from './form/formSample'; 
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//     <FormSample />  
+// );
+
+// import Calculator from './lifting/Calculator';
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//     <Calculator />  
+// );
+
+// import WelcomeDialogue from './composition/WelcomeDialogue';
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//     <WelcomeDialogue />  
+// );
+
+import ContextApp from './context/ContextApp';
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    <ContextApp />  
+);
 reportWebVitals();
