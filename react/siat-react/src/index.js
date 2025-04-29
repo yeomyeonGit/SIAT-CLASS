@@ -34,11 +34,11 @@ import reportWebVitals from './reportWebVitals';
 //   </React.StrictMode>
 // );
 
-// import App from './App'; 
-// const root = ReactDOM.createRoot(document.getElementById('root'));
-// root.render(
-//     <App />  
-// );
+import App from './App'; 
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    <App />  
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
@@ -130,9 +130,9 @@ import reportWebVitals from './reportWebVitals';
 //     <ContextApp />  
 // );
 
-import Login from './token/Login';
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <Login />  
-);
+// import Login from './token/Login';
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//     <Login />  
+// );
 reportWebVitals();

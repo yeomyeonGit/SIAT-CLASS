@@ -35,3 +35,8 @@ spring:
         hibernate :
             ddl-auto: update
         show-sql: true
+
+
+# token
+jwt:
+    secret: ${JWT_SECRET_KEY}

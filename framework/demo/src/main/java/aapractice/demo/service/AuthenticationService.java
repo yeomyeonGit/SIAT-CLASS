@@ -37,6 +37,8 @@ public class AuthenticationService {
                                    .accessToken(accToken)
                                    .refreshToken(refToken)
                                    .build() ;
+
+        // JPA 방식은 Response와 DB 반영을 따로따로 해야하나?
         return response ;
     }
 }

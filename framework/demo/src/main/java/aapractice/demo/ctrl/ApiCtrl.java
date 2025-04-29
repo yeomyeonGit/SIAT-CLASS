@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/api/v1")
 public class ApiCtrl {
 
-    @GetMapping("path")
+    @GetMapping("hello")
     public String hello() {
+        System.out.println("debug >>>> Api Ctrl hello siat");
         return "hello Siat" ;
     }
 }
