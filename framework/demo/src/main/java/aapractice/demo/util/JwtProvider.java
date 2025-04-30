@@ -34,7 +34,7 @@ public class JwtProvider {
         return Jwts.builder()
                     .setSubject(email) // 누구에 대한 토큰이냐?
                     .setIssuedAt(new Date())  // 토큰을 생성한 시간
-                    .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 20))
+                    .setExpiration(new Date(System.currentTimeMillis() + 1000 * 10))
                     // 만료될 시간. 20분으로 세팅
                     .signWith(getSigningKey())   // key 넣어서 서명
                     .compact() ;
@@ -51,6 +51,18 @@ public class JwtProvider {
                     .signWith(getSigningKey())
                     .compact() ;
 
+    }
+
+    // 토큰 재발급
+    public String renewToken(String token) {
+        System.out.println("debug >>> JwtProvider renew Token generate");
+
+        return Jwts.parserBuilder()  // 파싱할 수 있는 토큰을 준비하는 과정
+                    .setSigningKey(getSigningKey())  // 토큰 생성할 때 썼던 키와 동일한 키로 서명
+                    .build()
+                    .parseClaimsJws(token)   // payload (뭐임?)
+                    .getBody()
+                    .getSubject() ;   // 만들 때 식별자를 꺼냄 - email을 가져옴.
     }
     
 }

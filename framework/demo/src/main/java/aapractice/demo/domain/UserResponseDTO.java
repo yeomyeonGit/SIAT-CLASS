@@ -16,6 +16,7 @@ public class UserResponseDTO {
 
     // db set
     private Long    id ;
+    
     private String  email ;
     private String  passwd ;
     private String  refreshToken ;

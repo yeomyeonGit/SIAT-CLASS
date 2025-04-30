@@ -12,7 +12,7 @@ function Login(props) {
             "passwd" : passwd
         }) ;
         console.log("response >> ", response)
-        console.log("authorization : ", response.headers.get("Authorization"))
+        console.log("Authorization : ", response.headers.get("Authorization"))
         console.log("refreshToken : ", response.headers.get("Refresh-Token"))
         // 데이터를 담는 방법 - context, localStorage, 외부 라이브러리
         localStorage.setItem("accessToken", response.headers.get("Authorization"));
@@ -35,7 +35,7 @@ function Login(props) {
                 placeholder="패스워드"
                 value={passwd}
                 onChange={ (e) => setPasswd(e.target.value)} />
-        <button onClick={loginHandler}>Login</button>
+        <button onClick={loginHandler}> Login </button>
       </div>  
     );
 }

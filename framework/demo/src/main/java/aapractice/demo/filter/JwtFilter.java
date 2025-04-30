@@ -51,6 +51,7 @@ public class JwtFilter implements Filter {
         String method = req.getMethod() ;
         System.out.println("debug >>> client method: " + method);
 
+        // CORS 문제 해결
         if ("OPTIONS".equalsIgnoreCase(method)) {
             res.setStatus(HttpServletResponse.SC_OK);
             // res.setHeader("Access-Control-Allow-Origin", "*");
@@ -81,19 +82,26 @@ public class JwtFilter implements Filter {
         String token = authHeader.substring(7) ;
         System.out.println("debug >>>>> token : " + token);
         try {
-            // JWT 서명과 유효기간 체크
+            // JWT(서명과 유효기간 체크)
             Jwts.parserBuilder()
                 .setSigningKey(key)
                 .build()
                 .parseClaimsJws(token) ;
-            System.out.println("debug >>> 검증 성공 -> 컨트롤러 이동");
+            System.out.println("debug >>>> 寃�利앹꽦怨� -> 而⑦듃濡ㅻ윭濡� �대룞");
             chain.doFilter(request, response);
 
         } catch(Exception e) {
             e.printStackTrace();
-            System.out.println(("debug >>> 토큰 이상 (Forbidden 403)"));
+            
             res.setStatus(res.SC_FORBIDDEN);
-            res.getWriter().write("Invalid or expried token") ;
+            
+            res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+            res.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
+            res.setHeader("Access-Control-Allow-Credentials", "true");
+            res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+            
+            chain.doFilter(request, response);
+            return ;
         }
     }
 
@@ -104,7 +112,7 @@ public class JwtFilter implements Filter {
                path.startsWith("/v3/api-docs") ||
                path.startsWith("/swagger-resources") ||
                path.startsWith("/swagger-ui") ||
-               path.startsWith("/h2/console") ||
+               path.startsWith("/h2-console") ||
                path.startsWith("/auth") ;
     }
 }
