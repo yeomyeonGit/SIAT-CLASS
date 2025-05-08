@@ -13,10 +13,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -48,6 +52,23 @@ public class UserCtrl {
         List<PostResponseDto> lst = service.getUserPostsService(id) ;
         return ResponseEntity.ok().body(lst) ;
     }
+
+    // (@PathVariable String id, @RequestBody Map<String, Object> post)
+    @PutMapping("/{email}/update")   // user의 id - 사용자의 아이디
+    public String updatePost(@PathVariable(name = "email") String email, @RequestBody PostRequestDto params) {
+        System.out.println("debug >>> UserCtrl updatePosts");
+        service.updatePostsService(email, params) ;
+        return null;
+    }
+
+    @DeleteMapping("{email}/{postId}")
+    public String deletePost(@PathVariable("email") String email,
+                             @PathVariable("postId") Long postId) {
+        System.out.println("debug >>>> userCtrl deletePost");
+        service.deletePostsService(email, postId) ;
+        return null ;
+    }
+
     
     
     

@@ -114,6 +114,7 @@ public class JwtFilter implements Filter {
                path.startsWith("/swagger-ui") ||
                path.startsWith("/h2-console") ||
                path.startsWith("/auth") ||
-               path.startsWith("/user") ;
+               path.startsWith("/user") ||
+               path.startsWith("/jpa") ;
     }
 }
