@@ -1,20 +1,25 @@
 package aapractice.demo.domain.entity;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 @Setter
 @Entity
 @Table(name = "siat_jpa_sample_tbl" )
+@DynamicUpdate
 public class JpaSampleEntity {
     @Id  // 기본키 컬럼
     @Column(name = "user_id", length = 50)   // 대체키

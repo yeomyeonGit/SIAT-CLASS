@@ -43,4 +43,8 @@ jwt:
     secret: ${JWT_SECRET_KEY}
 
 
+openApi:
+    serviceKey: ${SERVICE_KEY}
+    callbackUrl: ${CALLBACKURL}
+    dataType: ${TYPE}
 # yml은 들여 쓰기
