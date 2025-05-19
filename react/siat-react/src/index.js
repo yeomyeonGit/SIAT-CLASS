@@ -135,4 +135,11 @@ root.render(
 // root.render(
 //     <Login />  
 // );
+
+// import ForecastPage from './openapi/ForecastPage';
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//     <ForecastPage />  
+// );
 reportWebVitals();
+
