@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  backend:
+    # yaml 정보
+    depends_on:
+      - database
+    image: theelectricrat/siat-spring-backend
+    container_name: backend-spring-container
+    # http://localhost:8808/api/user/signIn?id=cmion&pwd=cmion
+    ports: 
+      - "8808:8088"   # 외부:내부
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://database:3306/devops
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 123456789
+    restart: always
+    links: 
+      - database
+
+  database:
+    # yaml db 정보
+    image: theelectricrat/siat-mariadb
+    container_name: backend-maria-container
+    ports:
+      - "6033:3306" # 외부접근포트:내부접근포트, application.yml에 포트번호를 6033으로 해야 한다
+    volumes:
+      - ./src/main/resources/db_config:/docker-entrypoint-initdb.d
+    environment:
+      MARIADB_USER: root
+      MARIADB_ROOT_PASSWORD: 123456789
+      # 만약 사용자를 만들었다면 사용하는 환경설정
+      # MARIADB_PASSWORD: 123456789
+      MARIADB_DATABASE: devops
+      # 이거를 ENV에 숨겨놓으면 된다
+# 백엔드는 데이터베이스에 의존한다

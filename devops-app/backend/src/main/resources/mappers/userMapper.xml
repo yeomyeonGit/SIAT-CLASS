@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="backend.backend.user.dao.UserMapper">
+    <select id = "signIn"
+            parameterType = "userRequestDTO"
+            resultType = "userResponseDTO">
+        SELECT  ID, PWD, NAME
+        FROM    pjt_user_tbl
+        WHERE   ID = #{id} AND PWD = #{pwd}
+        <!-- config에 parameterType, resultType이 정의돼 있다 -->
+    </select>
+
+    <select id = "signUp"
+            parameterType = "userRequestDTO">
+        INSERT INTO pjt_user_tbl
+        VALUES (#{id}, #{pwd}, #{name})
+    </select>
+    
+</mapper>
