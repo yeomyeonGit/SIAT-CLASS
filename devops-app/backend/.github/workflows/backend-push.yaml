@@ -1,0 +1,18 @@
+# display name
+name: docker push image
+
+# trigger
+on:
+  push:
+    branches: ["main"]   # main 브랜치에서 push가 발생됐을 때
+  
+jobs:
+  # 1. runner(os) 설치
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    # job 안에서 실행되는 것 명시
+    steps:
+      # action 정의
+      - name: java checkout code
+        uses: actions/checkout@v3
