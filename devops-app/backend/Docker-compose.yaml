@@ -5,7 +5,7 @@ services:
     # yaml 정보
     depends_on:
       - database
-    image: theelectricrat/siat-spring-backend
+    image: theelectricrat/siat-action-backend:latest
     container_name: backend-spring-container
     # http://localhost:8808/api/user/signIn?id=cmion&pwd=cmion
     ports: 
